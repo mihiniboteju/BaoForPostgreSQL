@@ -201,6 +201,123 @@ static void set_arm_options(int arm) {
     enable_indexonlyscan = true; 
     enable_nestloop = true; 
     break;
+  case 26: // hashjoin,indexonlyscan,indexscan
+    enable_hashjoin = true;
+    enable_indexonlyscan = true;
+    enable_indexscan = true;
+    break;
+  case 27: // hashjoin,indexscan,mergejoin
+    enable_hashjoin = true;
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    break;
+  case 28: // hashjoin,indexscan,mergejoin,nestloop,seqscan
+    enable_hashjoin = true;
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    enable_nestloop = true;
+    enable_seqscan = true;
+    break;
+  case 29: // hashjoin,indexscan,mergejoin,seqscan
+    enable_hashjoin = true;
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    enable_seqscan = true;
+    break;
+  case 30: // hashjoin,indexscan,seqscan
+    enable_hashjoin = true;
+    enable_indexscan = true;
+    enable_seqscan = true;
+    break;
+  case 31: // hashjoin,mergejoin,nestloop,seqscan
+    enable_hashjoin = true;
+    enable_mergejoin = true;
+    enable_nestloop = true;
+    enable_seqscan = true;
+    break;
+  case 32: // hashjoin,mergejoin,seqscan
+    enable_hashjoin = true;
+    enable_mergejoin = true;
+    enable_seqscan = true;
+    break;
+  case 33: // hashjoin,nestloop,seqscan
+    enable_hashjoin = true;
+    enable_nestloop = true;
+    enable_seqscan = true;
+    break;
+  case 34: // hashjoin,seqscan
+    enable_hashjoin = true;
+    enable_seqscan = true;
+    break;
+  case 35: // indexonlyscan,indexscan,mergejoin
+    enable_indexonlyscan = true;
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    break;
+  case 36: // indexonlyscan,indexscan,mergejoin,nestloop
+    enable_indexonlyscan = true;
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    enable_nestloop = true;
+    break;
+  case 37: // indexonlyscan,indexscan,mergejoin,nestloop,seqscan
+    enable_indexonlyscan = true;
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    enable_nestloop = true;
+    enable_seqscan = true;
+    break;
+  case 38: // indexonlyscan,indexscan,mergejoin,seqscan
+    enable_indexonlyscan = true;
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    enable_seqscan = true;
+    break;
+  case 39: // indexonlyscan,mergejoin
+    enable_indexonlyscan = true;
+    enable_mergejoin = true;
+    break;
+  case 40: // indexonlyscan,mergejoin,seqscan
+    enable_indexonlyscan = true;
+    enable_mergejoin = true;
+    enable_seqscan = true;
+    break;
+  case 41: // indexonlyscan,nestloop
+    enable_indexonlyscan = true;
+    enable_nestloop = true;
+    break;
+  case 42: // indexonlyscan,nestloop,seqscan
+    enable_indexonlyscan = true;
+    enable_nestloop = true;
+    enable_seqscan = true;
+    break;
+  case 43: // indexscan,mergejoin
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    break;
+  case 44: // indexscan,mergejoin,seqscan
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    enable_seqscan = true;
+    break;
+  case 45: // indexscan,nestloop,seqscan
+    enable_indexscan = true;
+    enable_nestloop = true;
+    enable_seqscan = true;
+    break;
+  case 46: // mergejoin,nestloop,seqscan
+    enable_mergejoin = true;
+    enable_nestloop = true;
+    enable_seqscan = true;
+    break;
+  case 47: // mergejoin,seqscan
+    enable_mergejoin = true;
+    enable_seqscan = true;
+    break;
+  case 48: // nestloop,seqscan
+    enable_nestloop = true;
+    enable_seqscan = true;
+    break;
   default:
     elog(ERROR, "Invalid arm index %d selected.", arm);
     break;
