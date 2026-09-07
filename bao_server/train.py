@@ -7,14 +7,14 @@ import reg_blocker
 class BaoTrainingException(Exception):
     pass
 
-def train_and_swap(fn, old, tmp, verbose=False):
+def train_and_swap(fn, old, tmp, verbose=False, experience_fn=None):
     if os.path.exists(fn):
         old_model = model.BaoRegression(have_cache_data=True)
         old_model.load(fn)
     else:
         old_model = None
 
-    new_model = train_and_save_model(tmp, verbose=verbose)
+    new_model = train_and_save_model(tmp, verbose=verbose, experience_fn=experience_fn)
     max_retries = 5
     current_retry = 1
     while not reg_blocker.should_replace_model(old_model, new_model):
@@ -26,7 +26,8 @@ def train_and_swap(fn, old, tmp, verbose=False):
               + "Trying to retrain with emphasis on regressions.")
         print("Retry #", current_retry)
         new_model = train_and_save_model(tmp, verbose=verbose,
-                                         emphasize_experiments=current_retry)
+                                         emphasize_experiments=current_retry,
+                                         experience_fn=experience_fn)
         current_retry += 1
 
     if os.path.exists(fn):
@@ -34,8 +35,10 @@ def train_and_swap(fn, old, tmp, verbose=False):
         os.rename(fn, old)
     os.rename(tmp, fn)
 
-def train_and_save_model(fn, verbose=True, emphasize_experiments=0):
-    all_experience = storage.experience()
+def train_and_save_model(fn, verbose=True, emphasize_experiments=0, experience_fn=None):
+    if experience_fn is None:
+        experience_fn = storage.experience
+    all_experience = experience_fn()
 
     for _ in range(emphasize_experiments):
         all_experience.extend(storage.experiment_experience())

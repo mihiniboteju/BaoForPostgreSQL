@@ -56,6 +56,12 @@ def experience():
         c.execute("SELECT plan, reward FROM experience")
         return c.fetchall()
 
+def experience_window(n=2000):
+    with _bao_db() as conn:
+        c = conn.cursor()
+        c.execute("SELECT plan, reward FROM experience ORDER BY id DESC LIMIT ?", (n,))
+        return c.fetchall()
+
 def experiment_experience():
     all_experiment_experience = []
     for res in experiment_results():

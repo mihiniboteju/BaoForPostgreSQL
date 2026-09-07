@@ -1,7 +1,1 @@
-*~
-*.bc
-*.o
-*.so
-*\#*
-.clangd
-.ipynb*
+.venv
