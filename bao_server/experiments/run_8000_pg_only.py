@@ -5,18 +5,23 @@ import glob
 import random
 
 QUERY_DIR = "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique"
-OUTPUT_CSV = "pg_only_full_run.csv"
+OUTPUT_CSV = "pg_only_8000_run.csv"
 PG_CONN_STR = "dbname=imdb user=mini password=qwerty host=localhost"
 RANDOM_SEED = 42
+RUN_TYPE = "PG"
 
 
 def run_one_query(cur, query_file):
     with open(query_file) as f:
         query = f.read()
-    start = time.time()
+
+    t_start = time.time()
     cur.execute(query)
     cur.fetchall()
-    return (time.time() - start) * 1000.0
+    t_end = time.time()
+
+    duration_ms = (t_end - t_start) * 1000.0
+    return t_start, t_end, duration_ms
 
 
 def main():
@@ -34,18 +39,32 @@ def main():
 
     cur.execute("SET enable_bao TO off;")   # completely disables Bao's hooks
 
+    fieldnames = ["query_id", "query_file", "t_start", "t_end", "duration_ms", "run_type"]
     results = []
+
     for i, qf in enumerate(query_files):
-        latency = run_one_query(cur, qf)
-        results.append((i, qf, latency))
-        print(i, qf, f"{latency:.2f}ms", flush=True)
+        t_start, t_end, duration_ms = run_one_query(cur, qf)
+        row = {
+            "query_id": i,
+            "query_file": qf,
+            "t_start": t_start,
+            "t_end": t_end,
+            "duration_ms": duration_ms,
+            "run_type": RUN_TYPE,
+        }
+        results.append(row)
+        print(i, qf, f"{duration_ms:.2f}ms", RUN_TYPE, flush=True)
 
         if i % 500 == 0:
             with open(OUTPUT_CSV, "w", newline="") as f:
-                csv.writer(f).writerows(results)
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(results)
 
     with open(OUTPUT_CSV, "w", newline="") as f:
-        csv.writer(f).writerows(results)
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(results)
 
     elapsed = time.time() - run_start
     print(f"Done. Wrote {len(results)} rows to {OUTPUT_CSV}")

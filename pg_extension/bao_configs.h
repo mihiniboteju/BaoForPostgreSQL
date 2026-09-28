@@ -3,7 +3,7 @@
 
 #include "c.h"
 
-#define BAO_MAX_ARMS 26
+#define BAO_MAX_ARMS 5
 
 // Each Bao config variable is linked to a PostgreSQL session variable.
 // See the string docs provided to the PG functions in main.c.

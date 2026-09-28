@@ -51,270 +51,262 @@ static void set_arm_options(int arm) {
   enable_indexonlyscan = false;
   
   switch (arm) {
-  case 0:
-    enable_hashjoin = true;
-    enable_indexscan = true;
-    enable_mergejoin = true;
-    enable_nestloop = true;
-    enable_seqscan = true;
-    enable_indexonlyscan = true;
-    break;
-    
-  case 1: 
+  
+  case 0: 
     enable_hashjoin = true; 
     enable_indexonlyscan = true; 
     enable_indexscan = true; 
     enable_mergejoin = true; 
+    enable_seqscan = true; 
+    break;
+  case 1: 
+    enable_hashjoin = true; 
+    enable_indexonlyscan = true; 
+    enable_nestloop = true; 
     enable_seqscan = true; 
     break;
   case 2: 
     enable_hashjoin = true; 
     enable_indexonlyscan = true; 
-    enable_nestloop = true; 
     enable_seqscan = true; 
     break;
   case 3: 
     enable_hashjoin = true; 
     enable_indexonlyscan = true; 
+    enable_indexscan = true; 
+    enable_nestloop = true; 
     enable_seqscan = true; 
     break;
   case 4: 
-    enable_hashjoin = true; 
-    enable_indexonlyscan = true; 
-    enable_indexscan = true; 
-    enable_nestloop = true; 
-    enable_seqscan = true; 
+    enable_indexonlyscan = true;
+    enable_indexscan = true;
+    enable_mergejoin = true;
+    enable_nestloop = true;
+    enable_seqscan = true;
     break;
-  case 5: 
+  case 5:
     enable_hashjoin = true; 
-    enable_indexonlyscan = true; 
+    enable_indexscan = true; 
     enable_mergejoin = true; 
     enable_nestloop = true; 
     break;
-  case 6:
-    enable_hashjoin = true; 
-    enable_indexscan = true; 
+  case 6: 
+    enable_indexonlyscan = true; 
     enable_mergejoin = true; 
     enable_nestloop = true; 
     break;
   case 7: 
+    enable_hashjoin = true; 
     enable_indexonlyscan = true; 
-    enable_mergejoin = true; 
-    enable_nestloop = true; 
     break;
   case 8: 
     enable_hashjoin = true; 
     enable_indexonlyscan = true; 
-    break;
-  case 9: 
-    enable_hashjoin = true; 
-    enable_indexonlyscan = true; 
     enable_indexscan = true; 
     enable_nestloop = true; 
     break;
-  case 10:
+  case 9:
     enable_hashjoin = true; 
     enable_indexonlyscan = true; 
     enable_indexscan = true; 
+    enable_seqscan = true; 
+    break;
+  case 10: 
+    enable_hashjoin = true; 
+    enable_indexonlyscan = true; 
+    enable_mergejoin = true; 
+    enable_nestloop = true; 
     enable_seqscan = true; 
     break;
   case 11: 
     enable_hashjoin = true; 
     enable_indexonlyscan = true; 
     enable_mergejoin = true; 
-    enable_nestloop = true; 
     enable_seqscan = true; 
     break;
   case 12: 
     enable_hashjoin = true; 
-    enable_indexonlyscan = true; 
-    enable_mergejoin = true; 
-    enable_seqscan = true; 
+    enable_indexscan = true; 
+    enable_nestloop = true; 
     break;
   case 13: 
-    enable_hashjoin = true; 
     enable_indexscan = true; 
     enable_nestloop = true; 
     break;
   case 14: 
     enable_indexscan = true; 
-    enable_nestloop = true; 
-    break;
-  case 15: 
-    enable_indexscan = true; 
     enable_mergejoin = true; 
     enable_nestloop = true; 
     enable_seqscan = true; 
     break;
-  case 16: 
+  case 15: 
     enable_indexonlyscan = true; 
     enable_indexscan = true; 
     enable_nestloop = true; 
     break;
-  case 17: 
+  case 16: 
     enable_hashjoin = true; 
     enable_indexonlyscan = true; 
+    enable_indexscan = true; 
+    enable_mergejoin = true; 
+    enable_nestloop = true; 
+    break;
+  case 17: 
     enable_indexscan = true; 
     enable_mergejoin = true; 
     enable_nestloop = true; 
     break;
   case 18: 
-    enable_indexscan = true; 
+    enable_indexonlyscan = true; 
     enable_mergejoin = true; 
     enable_nestloop = true; 
+    enable_seqscan = true; 
     break;
   case 19: 
     enable_indexonlyscan = true; 
-    enable_mergejoin = true; 
+    enable_indexscan = true; 
     enable_nestloop = true; 
     enable_seqscan = true; 
     break;
   case 20: 
+    enable_hashjoin = true; 
     enable_indexonlyscan = true; 
     enable_indexscan = true; 
-    enable_nestloop = true; 
-    enable_seqscan = true; 
+    enable_mergejoin = true; 
     break;
   case 21: 
     enable_hashjoin = true; 
     enable_indexonlyscan = true; 
-    enable_indexscan = true; 
     enable_mergejoin = true; 
     break;
   case 22: 
-    enable_hashjoin = true; 
-    enable_indexonlyscan = true; 
-    enable_mergejoin = true; 
-    break;
-  case 23: 
     enable_hashjoin = true; 
     enable_indexscan = true; 
     enable_nestloop = true; 
     enable_seqscan = true; 
     break;
-  case 24: 
+  case 23: 
     enable_hashjoin = true; 
     enable_indexscan = true; 
     break;
-  case 25: 
+  case 24: 
     enable_hashjoin = true; 
     enable_indexonlyscan = true; 
     enable_nestloop = true; 
     break;
-  case 26: // hashjoin,indexonlyscan,indexscan
+  case 25: // hashjoin,indexonlyscan,indexscan
     enable_hashjoin = true;
     enable_indexonlyscan = true;
     enable_indexscan = true;
     break;
-  case 27: // hashjoin,indexscan,mergejoin
+  case 26: // hashjoin,indexscan,mergejoin
     enable_hashjoin = true;
     enable_indexscan = true;
     enable_mergejoin = true;
     break;
-  case 28: // hashjoin,indexscan,mergejoin,nestloop,seqscan
+  case 27: // hashjoin,indexscan,mergejoin,nestloop,seqscan
     enable_hashjoin = true;
     enable_indexscan = true;
     enable_mergejoin = true;
     enable_nestloop = true;
     enable_seqscan = true;
     break;
-  case 29: // hashjoin,indexscan,mergejoin,seqscan
+  case 28: // hashjoin,indexscan,mergejoin,seqscan
     enable_hashjoin = true;
     enable_indexscan = true;
     enable_mergejoin = true;
     enable_seqscan = true;
     break;
-  case 30: // hashjoin,indexscan,seqscan
+  case 29: // hashjoin,indexscan,seqscan
     enable_hashjoin = true;
     enable_indexscan = true;
     enable_seqscan = true;
     break;
-  case 31: // hashjoin,mergejoin,nestloop,seqscan
+  case 30: // hashjoin,mergejoin,nestloop,seqscan
     enable_hashjoin = true;
     enable_mergejoin = true;
     enable_nestloop = true;
     enable_seqscan = true;
     break;
-  case 32: // hashjoin,mergejoin,seqscan
+  case 31: // hashjoin,mergejoin,seqscan
     enable_hashjoin = true;
     enable_mergejoin = true;
     enable_seqscan = true;
     break;
-  case 33: // hashjoin,nestloop,seqscan
+  case 32: // hashjoin,nestloop,seqscan
     enable_hashjoin = true;
     enable_nestloop = true;
     enable_seqscan = true;
     break;
-  case 34: // hashjoin,seqscan
+  case 33: // hashjoin,seqscan
     enable_hashjoin = true;
     enable_seqscan = true;
     break;
-  case 35: // indexonlyscan,indexscan,mergejoin
+  case 34: // indexonlyscan,indexscan,mergejoin
     enable_indexonlyscan = true;
     enable_indexscan = true;
     enable_mergejoin = true;
     break;
-  case 36: // indexonlyscan,indexscan,mergejoin,nestloop
-    enable_indexonlyscan = true;
-    enable_indexscan = true;
-    enable_mergejoin = true;
-    enable_nestloop = true;
-    break;
-  case 37: // indexonlyscan,indexscan,mergejoin,nestloop,seqscan
+  case 35: // indexonlyscan,indexscan,mergejoin,nestloop
     enable_indexonlyscan = true;
     enable_indexscan = true;
     enable_mergejoin = true;
     enable_nestloop = true;
-    enable_seqscan = true;
     break;
-  case 38: // indexonlyscan,indexscan,mergejoin,seqscan
+  case 36: 
+    enable_hashjoin = true; 
+    enable_indexonlyscan = true; 
+    enable_mergejoin = true; 
+    enable_nestloop = true; 
+    break;
+  case 37: // indexonlyscan,indexscan,mergejoin,seqscan
     enable_indexonlyscan = true;
     enable_indexscan = true;
     enable_mergejoin = true;
     enable_seqscan = true;
     break;
-  case 39: // indexonlyscan,mergejoin
+  case 38: // indexonlyscan,mergejoin
     enable_indexonlyscan = true;
     enable_mergejoin = true;
     break;
-  case 40: // indexonlyscan,mergejoin,seqscan
+  case 39: // indexonlyscan,mergejoin,seqscan
     enable_indexonlyscan = true;
     enable_mergejoin = true;
     enable_seqscan = true;
     break;
-  case 41: // indexonlyscan,nestloop
+  case 40: // indexonlyscan,nestloop
     enable_indexonlyscan = true;
     enable_nestloop = true;
     break;
-  case 42: // indexonlyscan,nestloop,seqscan
+  case 41: // indexonlyscan,nestloop,seqscan
     enable_indexonlyscan = true;
     enable_nestloop = true;
     enable_seqscan = true;
     break;
-  case 43: // indexscan,mergejoin
+  case 42: // indexscan,mergejoin
     enable_indexscan = true;
     enable_mergejoin = true;
     break;
-  case 44: // indexscan,mergejoin,seqscan
+  case 43: // indexscan,mergejoin,seqscan
     enable_indexscan = true;
     enable_mergejoin = true;
     enable_seqscan = true;
     break;
-  case 45: // indexscan,nestloop,seqscan
+  case 44: // indexscan,nestloop,seqscan
     enable_indexscan = true;
     enable_nestloop = true;
     enable_seqscan = true;
     break;
-  case 46: // mergejoin,nestloop,seqscan
+  case 45: // mergejoin,nestloop,seqscan
     enable_mergejoin = true;
     enable_nestloop = true;
     enable_seqscan = true;
     break;
-  case 47: // mergejoin,seqscan
+  case 46: // mergejoin,seqscan
     enable_mergejoin = true;
     enable_seqscan = true;
     break;
-  case 48: // nestloop,seqscan
+  case 47: // nestloop,seqscan
     enable_nestloop = true;
     enable_seqscan = true;
     break;

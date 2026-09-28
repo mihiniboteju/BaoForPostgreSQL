@@ -1,0 +1,1102 @@
+[
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/08268.sql",
+    "arm_latencies_ms": {
+      "0": 1996.508,
+      "1": 809.073,
+      "2": 2073.837,
+      "3": 685.781,
+      "4": 654.353
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16432.sql",
+    "arm_latencies_ms": {
+      "0": 81.431,
+      "1": 71.96,
+      "2": 78.37,
+      "3": 68.927,
+      "4": 72.474
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16425.sql",
+    "arm_latencies_ms": {
+      "0": 77.501,
+      "1": 68.242,
+      "2": 81.779,
+      "3": 70.57,
+      "4": 70.69
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/13509.sql",
+    "arm_latencies_ms": {
+      "0": 653.079,
+      "1": 93.541,
+      "2": 817.22,
+      "3": 17.567,
+      "4": 21.13
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10065.sql",
+    "arm_latencies_ms": {
+      "0": 1199.13,
+      "1": 1648.077,
+      "2": 1279.809,
+      "3": 951.421,
+      "4": 395.316
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/11988.sql",
+    "arm_latencies_ms": {
+      "0": 100.142,
+      "1": 39.896,
+      "2": 846.174,
+      "3": 33.912,
+      "4": 31.456
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/e12a.sql",
+    "arm_latencies_ms": {
+      "0": 15353.931,
+      "1": 4333.362,
+      "2": 11354.239,
+      "3": 3739.854,
+      "4": 5696.006
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/01094.sql",
+    "arm_latencies_ms": {
+      "0": 2529.86,
+      "1": 6736.268,
+      "2": 2520.678,
+      "3": 5822.444,
+      "4": 5707.208
+    },
+    "best_arm": 2
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16427.sql",
+    "arm_latencies_ms": {
+      "0": 79.049,
+      "1": 70.489,
+      "2": 80.346,
+      "3": 70.295,
+      "4": 72.395
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/14439.sql",
+    "arm_latencies_ms": {
+      "0": 1872.322,
+      "1": 76.432,
+      "2": 1870.495,
+      "3": 76.381,
+      "4": 74.127
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10590.sql",
+    "arm_latencies_ms": {
+      "0": 1919.109,
+      "1": 5845.229,
+      "2": 1990.265,
+      "3": 5357.604,
+      "4": 5234.714
+    },
+    "best_arm": 0
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/03939.sql",
+    "arm_latencies_ms": {
+      "0": 124.2,
+      "1": 33.274,
+      "2": 776.562,
+      "3": 30.678,
+      "4": 6.613
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/03670.sql",
+    "arm_latencies_ms": {
+      "0": 1848.417,
+      "1": 1416.931,
+      "2": 1856.977,
+      "3": 1285.68,
+      "4": 1319.848
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/02254.sql",
+    "arm_latencies_ms": {
+      "0": 384.761,
+      "1": 69.693,
+      "2": 375.164,
+      "3": 63.505,
+      "4": 60.679
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/11910.sql",
+    "arm_latencies_ms": {
+      "0": 102.04,
+      "1": 36.523,
+      "2": 841.607,
+      "3": 30.324,
+      "4": 2.897
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/03326.sql",
+    "arm_latencies_ms": {
+      "0": 1787.952,
+      "1": 1246.967,
+      "2": 1809.093,
+      "3": 1169.928,
+      "4": 1036.419
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/00020.sql",
+    "arm_latencies_ms": {
+      "0": 2284.074,
+      "1": 16.05,
+      "2": 2342.084,
+      "3": 15.83,
+      "4": 38.332
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/12211.sql",
+    "arm_latencies_ms": {
+      "0": 1053.361,
+      "1": 7.109,
+      "2": 1060.931,
+      "3": 7.595,
+      "4": 7.11
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10536.sql",
+    "arm_latencies_ms": {
+      "0": 2072.792,
+      "1": 3158.428,
+      "2": 2312.972,
+      "3": 3018.545,
+      "4": 3125.261
+    },
+    "best_arm": 0
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/09999.sql",
+    "arm_latencies_ms": {
+      "0": 2325.173,
+      "1": 138.976,
+      "2": 2295.296,
+      "3": 134.663,
+      "4": 136.951
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/03411.sql",
+    "arm_latencies_ms": {
+      "0": 2298.605,
+      "1": 76.989,
+      "2": 2251.453,
+      "3": 6.665,
+      "4": 11.973
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/07491.sql",
+    "arm_latencies_ms": {
+      "0": 2181.83,
+      "1": 1242.508,
+      "2": 2131.821,
+      "3": 834.983,
+      "4": 1048.47
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/11238.sql",
+    "arm_latencies_ms": {
+      "0": 899.68,
+      "1": 543.538,
+      "2": 928.372,
+      "3": 642.934,
+      "4": 1328.659
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/18691.sql",
+    "arm_latencies_ms": {
+      "0": 3066.482,
+      "1": 2413.814,
+      "2": 2867.43,
+      "3": 1114.933,
+      "4": 1340.028
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/04235.sql",
+    "arm_latencies_ms": {
+      "0": 1924.364,
+      "1": 2203.745,
+      "2": 2024.112,
+      "3": 1985.31,
+      "4": 2022.192
+    },
+    "best_arm": 0
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/15415.sql",
+    "arm_latencies_ms": {
+      "0": 1910.595,
+      "1": 311.174,
+      "2": 1929.883,
+      "3": 176.326,
+      "4": 161.002
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/00935.sql",
+    "arm_latencies_ms": {
+      "0": 1089.693,
+      "1": 25.36,
+      "2": 1118.656,
+      "3": 24.202,
+      "4": 22.303
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/12498.sql",
+    "arm_latencies_ms": {
+      "0": 1734.352,
+      "1": 948.389,
+      "2": 1701.595,
+      "3": 844.088,
+      "4": 825.042
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/04897.sql",
+    "arm_latencies_ms": {
+      "0": 2108.639,
+      "1": 1525.238,
+      "2": 2091.789,
+      "3": 3305.965,
+      "4": 1169.964
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/19822.sql",
+    "arm_latencies_ms": {
+      "0": 2443.989,
+      "1": 123.064,
+      "2": 2446.728,
+      "3": 209.963,
+      "4": 269.138
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/02208.sql",
+    "arm_latencies_ms": {
+      "0": 1261.071,
+      "1": 2578.635,
+      "2": 1201.783,
+      "3": 2391.833,
+      "4": 1417.869
+    },
+    "best_arm": 2
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10202.sql",
+    "arm_latencies_ms": {
+      "0": 548.141,
+      "1": 40.731,
+      "2": 698.004,
+      "3": 31.048,
+      "4": 30.608
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/18463.sql",
+    "arm_latencies_ms": {
+      "0": 1598.606,
+      "1": 870.093,
+      "2": 1706.34,
+      "3": 1484.554,
+      "4": 1498.505
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/03059.sql",
+    "arm_latencies_ms": {
+      "0": 75.237,
+      "1": 88.841,
+      "2": 436.227,
+      "3": 72.911,
+      "4": 72.692
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16555.sql",
+    "arm_latencies_ms": {
+      "0": 78.372,
+      "1": 71.871,
+      "2": 80.688,
+      "3": 70.519,
+      "4": 72.006
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/05802.sql",
+    "arm_latencies_ms": {
+      "0": 77.717,
+      "1": 11.468,
+      "2": 426.368,
+      "3": 11.376,
+      "4": 9.977
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/00232.sql",
+    "arm_latencies_ms": {
+      "0": 1872.129,
+      "1": 131.658,
+      "2": 1849.412,
+      "3": 130.144,
+      "4": 135.537
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16240.sql",
+    "arm_latencies_ms": {
+      "0": 98.555,
+      "1": 70.364,
+      "2": 455.68,
+      "3": 52.389,
+      "4": 48.884
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/09688.sql",
+    "arm_latencies_ms": {
+      "0": 579.737,
+      "1": 310.279,
+      "2": 904.049,
+      "3": 114.781,
+      "4": 88.44
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/07902.sql",
+    "arm_latencies_ms": {
+      "0": 1718.77,
+      "1": 250.575,
+      "2": 1727.971,
+      "3": 252.881,
+      "4": 216.529
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/14134.sql",
+    "arm_latencies_ms": {
+      "0": 1647.411,
+      "1": 3294.2,
+      "2": 1546.317,
+      "3": 2662.984,
+      "4": 3702.595
+    },
+    "best_arm": 2
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/02725.sql",
+    "arm_latencies_ms": {
+      "0": 350.873,
+      "1": 344.047,
+      "2": 322.571,
+      "3": 264.892,
+      "4": 256.858
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/13914.sql",
+    "arm_latencies_ms": {
+      "0": 517.658,
+      "1": 227.76,
+      "2": 506.912,
+      "3": 118.916,
+      "4": 116.988
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/06337.sql",
+    "arm_latencies_ms": {
+      "0": 2268.485,
+      "1": 7193.152,
+      "2": 2305.307,
+      "3": 5955.04,
+      "4": 5732.422
+    },
+    "best_arm": 0
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/17800.sql",
+    "arm_latencies_ms": {
+      "0": 2001.465,
+      "1": 2248.411,
+      "2": 1958.726,
+      "3": 1414.186,
+      "4": 1697.495
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/01751.sql",
+    "arm_latencies_ms": {
+      "0": 1569.488,
+      "1": 177.144,
+      "2": 1564.15,
+      "3": 106.953,
+      "4": 102.756
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/5a.sql",
+    "arm_latencies_ms": {
+      "0": 82.647,
+      "1": 70.09,
+      "2": 82.32,
+      "3": 70.24,
+      "4": 74.295
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/14654.sql",
+    "arm_latencies_ms": {
+      "0": 2297.142,
+      "1": 9766.379,
+      "2": 2216.317,
+      "3": 753.442,
+      "4": 680.643
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/11509.sql",
+    "arm_latencies_ms": {
+      "0": 1758.918,
+      "1": 5.762,
+      "2": 1760.18,
+      "3": 5.617,
+      "4": 5.691
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/11060.sql",
+    "arm_latencies_ms": {
+      "0": 2586.476,
+      "1": 428.692,
+      "2": 2666.542,
+      "3": 119.104,
+      "4": 51.712
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/06632.sql",
+    "arm_latencies_ms": {
+      "0": 2390.42,
+      "1": 1181.372,
+      "2": 2395.417,
+      "3": 473.55,
+      "4": 670.127
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/03070.sql",
+    "arm_latencies_ms": {
+      "0": 79.504,
+      "1": 17.864,
+      "2": 351.061,
+      "3": 18.854,
+      "4": 17.044
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/06142.sql",
+    "arm_latencies_ms": {
+      "0": 76.127,
+      "1": 10.274,
+      "2": 420.233,
+      "3": 10.33,
+      "4": 9.853
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/04133.sql",
+    "arm_latencies_ms": {
+      "0": 2409.972,
+      "1": 54.088,
+      "2": 2389.003,
+      "3": 51.132,
+      "4": 12.805
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/00929.sql",
+    "arm_latencies_ms": {
+      "0": 649.664,
+      "1": 106.568,
+      "2": 634.896,
+      "3": 104.516,
+      "4": 66.765
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/00120.sql",
+    "arm_latencies_ms": {
+      "0": 2191.26,
+      "1": 20.459,
+      "2": 2248.823,
+      "3": 15.898,
+      "4": 15.191
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/17425.sql",
+    "arm_latencies_ms": {
+      "0": 2129.324,
+      "1": 571.198,
+      "2": 2036.026,
+      "3": 720.799,
+      "4": 693.185
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/09919.sql",
+    "arm_latencies_ms": {
+      "0": 2174.712,
+      "1": 117.753,
+      "2": 2210.254,
+      "3": 122.089,
+      "4": 123.604
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/09993.sql",
+    "arm_latencies_ms": {
+      "0": 2343.196,
+      "1": 166.319,
+      "2": 2395.473,
+      "3": 155.35,
+      "4": 180.256
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/00229.sql",
+    "arm_latencies_ms": {
+      "0": 1891.741,
+      "1": 137.956,
+      "2": 1865.332,
+      "3": 133.418,
+      "4": 132.523
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/05817.sql",
+    "arm_latencies_ms": {
+      "0": 2029.868,
+      "1": 5211.753,
+      "2": 1964.921,
+      "3": 727.992,
+      "4": 681.51
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/03916.sql",
+    "arm_latencies_ms": {
+      "0": 128.329,
+      "1": 89.982,
+      "2": 798.234,
+      "3": 4.245,
+      "4": 6.41
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/18597.sql",
+    "arm_latencies_ms": {
+      "0": 2301.654,
+      "1": 39.141,
+      "2": 2337.964,
+      "3": 50.228,
+      "4": 68.606
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/14223.sql",
+    "arm_latencies_ms": {
+      "0": 2228.92,
+      "1": 1865.753,
+      "2": 2223.158,
+      "3": 1982.098,
+      "4": 4862.115
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/04212.sql",
+    "arm_latencies_ms": {
+      "0": 2089.787,
+      "1": 6001.905,
+      "2": 1974.284,
+      "3": 5361.904,
+      "4": 5371.524
+    },
+    "best_arm": 2
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/18608.sql",
+    "arm_latencies_ms": {
+      "0": 2031.935,
+      "1": 2295.956,
+      "2": 2375.193,
+      "3": 2031.061,
+      "4": 2002.375
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/14991.sql",
+    "arm_latencies_ms": {
+      "0": 166.725,
+      "1": 37.598,
+      "2": 1254.754,
+      "3": 31.578,
+      "4": 35.854
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/15621.sql",
+    "arm_latencies_ms": {
+      "0": 1104.977,
+      "1": 159.503,
+      "2": 984.02,
+      "3": 139.865,
+      "4": 137.196
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/14803.sql",
+    "arm_latencies_ms": {
+      "0": 167.011,
+      "1": 38.566,
+      "2": 1040.946,
+      "3": 34.343,
+      "4": 31.153
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16398.sql",
+    "arm_latencies_ms": {
+      "0": 99.815,
+      "1": 46.883,
+      "2": 567.603,
+      "3": 37.083,
+      "4": 35.41
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/12345.sql",
+    "arm_latencies_ms": {
+      "0": 1162.237,
+      "1": 133.972,
+      "2": 1167.265,
+      "3": 99.382,
+      "4": 93.949
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/13055.sql",
+    "arm_latencies_ms": {
+      "0": 1904.181,
+      "1": 83.584,
+      "2": 1879.82,
+      "3": 82.147,
+      "4": 84.218
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/18836.sql",
+    "arm_latencies_ms": {
+      "0": 1732.584,
+      "1": 1400.397,
+      "2": 1750.793,
+      "3": 1093.887,
+      "4": 2381.773
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/01410.sql",
+    "arm_latencies_ms": {
+      "0": 901.693,
+      "1": 648.86,
+      "2": 977.906,
+      "3": 371.373,
+      "4": 731.598
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/01430.sql",
+    "arm_latencies_ms": {
+      "0": 1120.201,
+      "1": 1181.296,
+      "2": 1150.46,
+      "3": 527.426,
+      "4": 955.245
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/13825.sql",
+    "arm_latencies_ms": {
+      "0": 473.713,
+      "1": 61.565,
+      "2": 519.752,
+      "3": 59.3,
+      "4": 56.763
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10514.sql",
+    "arm_latencies_ms": {
+      "0": 1775.941,
+      "1": 4624.969,
+      "2": 1679.873,
+      "3": 4050.274,
+      "4": 4082.425
+    },
+    "best_arm": 2
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/18944.sql",
+    "arm_latencies_ms": {
+      "0": 1756.926,
+      "1": 496.808,
+      "2": 1743.055,
+      "3": 406.476,
+      "4": 825.687
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/15944.sql",
+    "arm_latencies_ms": {
+      "0": 803.52,
+      "1": 702.828,
+      "2": 835.799,
+      "3": 432.346,
+      "4": 880.989
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/05039.sql",
+    "arm_latencies_ms": {
+      "0": 675.786,
+      "1": 144.739,
+      "2": 647.164,
+      "3": 140.259,
+      "4": 106.146
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10543.sql",
+    "arm_latencies_ms": {
+      "0": 1936.307,
+      "1": 3957.455,
+      "2": 1875.421,
+      "3": 3541.452,
+      "4": 3457.03
+    },
+    "best_arm": 2
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/18099.sql",
+    "arm_latencies_ms": {
+      "0": 2332.338,
+      "1": 7024.733,
+      "2": 2339.505,
+      "3": 717.763,
+      "4": 695.947
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/14711.sql",
+    "arm_latencies_ms": {
+      "0": 2357.732,
+      "1": 7150.697,
+      "2": 2342.838,
+      "3": 726.575,
+      "4": 690.442
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/00271.sql",
+    "arm_latencies_ms": {
+      "0": 1829.364,
+      "1": 133.193,
+      "2": 1807.511,
+      "3": 128.679,
+      "4": 126.82
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10363.sql",
+    "arm_latencies_ms": {
+      "0": 2231.712,
+      "1": 127.834,
+      "2": 2249.479,
+      "3": 125.957,
+      "4": 130.13
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/18037.sql",
+    "arm_latencies_ms": {
+      "0": 1909.559,
+      "1": 657.037,
+      "2": 1874.468,
+      "3": 560.359,
+      "4": 562.095
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/13090.sql",
+    "arm_latencies_ms": {
+      "0": 96.711,
+      "1": 37.524,
+      "2": 929.6,
+      "3": 30.024,
+      "4": 29.544
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/19400.sql",
+    "arm_latencies_ms": {
+      "0": 942.168,
+      "1": 16.654,
+      "2": 955.727,
+      "3": 15.678,
+      "4": 15.901
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/17604.sql",
+    "arm_latencies_ms": {
+      "0": 277.123,
+      "1": 6.872,
+      "2": 613.912,
+      "3": 5.907,
+      "4": 11.316
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/05543.sql",
+    "arm_latencies_ms": {
+      "0": 902.688,
+      "1": 187.967,
+      "2": 910.845,
+      "3": 105.283,
+      "4": 112.404
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/04607.sql",
+    "arm_latencies_ms": {
+      "0": 125.068,
+      "1": 35.32,
+      "2": 830.263,
+      "3": 30.426,
+      "4": 2.966
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/11638.sql",
+    "arm_latencies_ms": {
+      "0": 848.239,
+      "1": 354.96,
+      "2": 835.11,
+      "3": 304.191,
+      "4": 570.431
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/02333.sql",
+    "arm_latencies_ms": {
+      "0": 174.241,
+      "1": 37.659,
+      "2": 1035.317,
+      "3": 33.361,
+      "4": 31.859
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10424.sql",
+    "arm_latencies_ms": {
+      "0": 1742.187,
+      "1": 5059.034,
+      "2": 1647.305,
+      "3": 4619.477,
+      "4": 4485.04
+    },
+    "best_arm": 2
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/09983.sql",
+    "arm_latencies_ms": {
+      "0": 2136.568,
+      "1": 130.746,
+      "2": 2242.478,
+      "3": 130.148,
+      "4": 133.574
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10918.sql",
+    "arm_latencies_ms": {
+      "0": 180.137,
+      "1": 104.046,
+      "2": 381.785,
+      "3": 76.225,
+      "4": 70.241
+    },
+    "best_arm": 4
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/15741.sql",
+    "arm_latencies_ms": {
+      "0": 1260.087,
+      "1": 916.748,
+      "2": 1236.965,
+      "3": 635.912,
+      "4": 2435.439
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/05480.sql",
+    "arm_latencies_ms": {
+      "0": 837.077,
+      "1": 169.999,
+      "2": 930.021,
+      "3": 97.022,
+      "4": 113.308
+    },
+    "best_arm": 3
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16386.sql",
+    "arm_latencies_ms": {
+      "0": 1977.358,
+      "1": 96.905,
+      "2": 1969.321,
+      "3": 2114.18,
+      "4": 2044.226
+    },
+    "best_arm": 1
+  },
+  {
+    "query_file": "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/05800.sql",
+    "arm_latencies_ms": {
+      "0": 2035.29,
+      "1": 5332.119,
+      "2": 1946.213,
+      "3": 786.903,
+      "4": 748.283
+    },
+    "best_arm": 4
+  }
+]

@@ -14,7 +14,7 @@ WINDOW_SIZE = 2000
 RETRAIN_EVERY = 100
 INITIAL_PG_ONLY = 100
 QUERY_DIR = "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique"
-OUTPUT_CSV = "bao_5000_run.csv"
+OUTPUT_CSV = "bao_8000_run.csv"
 PG_CONN_STR = "dbname=imdb user=mini password=qwerty host=localhost"
 RANDOM_SEED = 42
 # --------------------------------
@@ -27,10 +27,14 @@ def windowed_experience():
 def run_one_query(cur, query_file):
     with open(query_file) as f:
         query = f.read()
-    start = time.time()
+
+    t_start = time.time()
     cur.execute(query)
     cur.fetchall()
-    return (time.time() - start) * 1000.0
+    t_end = time.time()
+
+    duration_ms = (t_end - t_start) * 1000.0
+    return t_start, t_end, duration_ms
 
 
 def main():
@@ -51,15 +55,23 @@ def main():
     conn.autocommit = True
     cur = conn.cursor()
 
+    fieldnames = ["query_id", "query_file", "t_start", "t_end", "duration_ms", "run_type"]
     results = []
 
     # Phase 1: initial PG-only queries, still logging reward
     cur.execute("SET enable_bao TO on;")
     cur.execute("SET enable_bao_selection TO off;")
     for i, qf in enumerate(query_files[:INITIAL_PG_ONLY]):
-        latency = run_one_query(cur, qf)
-        results.append((i, qf, latency, "PG-initial"))
-        print(i, qf, f"{latency:.2f}ms", "PG-initial", flush=True)
+        t_start, t_end, duration_ms = run_one_query(cur, qf)
+        results.append({
+            "query_id": i,
+            "query_file": qf,
+            "t_start": t_start,
+            "t_end": t_end,
+            "duration_ms": duration_ms,
+            "run_type": "PG-initial",
+        })
+        print(i, qf, f"{duration_ms:.2f}ms", "PG-initial", flush=True)
 
     # Phase 2: Bao-active, with periodic windowed retraining
     cur.execute("SET enable_bao_selection TO on;")
@@ -75,16 +87,27 @@ def main():
             )
             baoctl.send_model_load(DEFAULT_MODEL_PATH)
 
-        latency = run_one_query(cur, qf)
-        results.append((i, qf, latency, "Bao-active"))
-        print(i, qf, f"{latency:.2f}ms", "Bao-active", flush=True)
+        t_start, t_end, duration_ms = run_one_query(cur, qf)
+        results.append({
+            "query_id": i,
+            "query_file": qf,
+            "t_start": t_start,
+            "t_end": t_end,
+            "duration_ms": duration_ms,
+            "run_type": "Bao",
+        })
+        print(i, qf, f"{duration_ms:.2f}ms", "Bao", flush=True)
 
         if offset % 500 == 0:
             with open(OUTPUT_CSV, "w", newline="") as f:
-                csv.writer(f).writerows(results)
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(results)
 
     with open(OUTPUT_CSV, "w", newline="") as f:
-        csv.writer(f).writerows(results)
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(results)
 
     elapsed_seconds = time.time() - run_start
     hours = elapsed_seconds / 3600
