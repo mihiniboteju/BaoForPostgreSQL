@@ -1,0 +1,172 @@
+**Query**
+SELECT MIN(chn.name) AS voiced_char_name,
+       MIN(n.name) AS voicing_actress_name,
+       MIN(t.title) AS kung_fu_panda
+FROM aka_name AS an,
+     char_name AS chn,
+     cast_info AS ci,
+     company_name AS cn,
+     info_type AS it,
+     keyword AS k,
+     movie_companies AS mc,
+     movie_info AS mi,
+     movie_keyword AS mk,
+     name AS n,
+     role_type AS rt,
+     title AS t
+WHERE ci.note IN ('(voice)',
+                  '(voice: Japanese version)',
+                  '(voice) (uncredited)',
+                  '(voice: English version)')
+  AND cn.country_code ='[us]'
+  AND it.info = 'release dates'
+  AND mi.info IS NOT NULL
+  AND (mi.info LIKE 'Japan:%201%'
+       OR mi.info LIKE 'USA:%201%')
+  AND n.gender ='f'
+  AND n.name LIKE '%An%'
+  AND rt.role ='actress'
+  AND t.id = mi.movie_id
+  AND t.id = mc.movie_id
+  AND t.id = ci.movie_id
+  AND t.id = mk.movie_id
+  AND mc.movie_id = ci.movie_id
+  AND mc.movie_id = mi.movie_id
+  AND mc.movie_id = mk.movie_id
+  AND mi.movie_id = ci.movie_id
+  AND mi.movie_id = mk.movie_id
+  AND ci.movie_id = mk.movie_id
+  AND cn.id = mc.company_id
+  AND it.id = mi.info_type_id
+  AND n.id = ci.person_id
+  AND rt.id = ci.role_id
+  AND n.id = an.person_id
+  AND ci.person_id = an.person_id
+  AND chn.id = ci.person_role_id
+  AND k.id = mk.keyword_id
+  AND t.title LIKE 'Kung Fu Panda%'
+  AND cn.name = 'DreamWorks Home Entertainment'
+AND k.keyword IN ('murder',
+'marvel-comics',
+'based-on-novel',
+'soothsayer')
+AND t.production_year > 2009
+**Statistics**
+Table Size:
+an : 2
+chn : 1 (3140339)
+ci : 1 (36244344)
+cn : 1 (234997)
+it : 1 (113)
+k : 1 (134170)
+mc : 132 (2609129)
+mi : 1 (14835720)
+mk : 45 (4523930)
+n : 1 (4167491)
+rt : 1 (12)
+t : 1 (2528312)
+Main Values:
+aka_name.person_id : {1958734, 210}, {510534, 180}
+cast_info.note : {'(producer)', 1297793}, {'(executive producer)', 1044270}, {'(writer)', 723142}
+cast_info.person_id : {318300, 13280}, {598206, 13280}, {1495180, 13280}
+cast_info.role_id : {1, 12688186}, {2, 7468042}, {10, 4347303}
+cast_info.person_role_id : {1, 1343668}, {4463, 638635}, {53, 251108}
+company_name.country_code : {'[us]', 85186}, {'[gb]', 16074}, {'[fr]', 10544}
+company_name.name : {'Sony Pictures Releasing', 63}, {'United International Pic...', 63}, {'Universal Pictures Inter...', 39}
+movie_companies.company_id : {6, 62880}, {19, 46877}, {160, 36006}
+movie_info.info : {'Color', 990518}, {'English', 813834}, {'USA', 570523}
+movie_info.movie_id : {1864938, 3455}, {1898282, 2961}, {2413074, 2961}
+movie_info.info_type_id : {16, 3033740}, {3, 1537845}, {7, 1460361}
+movie_keyword.movie_id : {2238348, 1206}, {1876529, 1056}, {2020126, 1056}
+movie_keyword.keyword_id : {335, 73891}, {16264, 58811}, {117, 39509}
+name.name : {'Lee, David', 695}
+name.gender : {'m', 1716788}, {'f', 965086}
+title.title : {'(#1.1)', 12808}, {'(#1.2)', 10027}, {'(#1.4)', 8511}
+title.production_year : {2012, 163641}, {2011, 162630}, {2010, 142238}
+NDV:
+aka_name.person_id : 361770
+char_name.name : 3140303
+char_name.id : 3140303
+cast_info.note : 3878
+cast_info.movie_id : 982948
+cast_info.person_id : 70562
+cast_info.role_id : 11
+cast_info.person_role_id : 22854
+cast_info.id : 36217468
+company_name.country_code : 167
+company_name.id : 234997
+company_name.name : 210238
+info_type.info : 113
+info_type.id : 113
+keyword.id : 134170
+keyword.keyword : 134170
+movie_companies.movie_id : 492585
+movie_companies.company_id : 19798
+movie_companies.id : 2609129
+movie_info.info : 20028
+movie_info.movie_id : 350227
+movie_info.info_type_id : 70
+movie_info.id : 14805953
+movie_keyword.movie_id : 99907
+movie_keyword.keyword_id : 14878
+movie_keyword.id : 4523930
+name.name : 1809600
+name.gender : 2
+name.id : 4167636
+role_type.role : 12
+role_type.id : 12
+title.title : 136368
+title.id : 2527926
+title.production_year : 121
+Min Max:
+aka_name.person_id : {4, 4167489}
+char_name.id : {1, 3140339}
+cast_info.movie_id : {1, 2525975}
+cast_info.person_id : {1, 4061926}
+cast_info.role_id : {1, 11}
+cast_info.person_role_id : {1, 3140339}
+cast_info.id : {1, 36244344}
+company_name.id : {1, 234997}
+info_type.id : {1, 113}
+keyword.id : {1, 134170}
+movie_companies.movie_id : {2, 2525745}
+movie_companies.company_id : {1, 234997}
+movie_companies.id : {1, 2609129}
+movie_info.movie_id : {1, 2526430}
+movie_info.info_type_id : {1, 110}
+movie_info.id : {1, 14835720}
+movie_keyword.movie_id : {2, 2525971}
+movie_keyword.keyword_id : {1, 134170}
+movie_keyword.id : {1, 4523930}
+name.id : {1, 4167491}
+role_type.id : {1, 12}
+title.id : {1, 2528312}
+title.production_year : {1880, 2019}
+Histograms:
+aka_name.person_id : [192, 366106, 716112, 1084138, 1447756, 1823450, 2255508, 2671879, 3211006, 3798142, 4094747, 4167478]
+char_name.id : [198, 277322, 557200, 839472, 1127101, 1415696, 1723582, 2006265, 2286248, 2576753, 2850071, 3140339]
+cast_info.movie_id : [38, 240519, 488036, 726206, 951944, 1169459, 1431538, 1686422, 1898755, 2109415, 2323603, 2525834]
+cast_info.person_id : [382, 317969, 634736, 973825, 1292565, 1620070, 2018617, 2377145, 2736498, 3007394, 3488829, 4061893]
+cast_info.person_role_id : [15, 7094, 36710, 125435, 326443, 608775, 1058195, 1542750, 2054703, 2349798, 2737788, 3140163]
+cast_info.id : [1338, 3231271, 6618204, 9883840, 13032433, 16416487, 19906355, 23216735, 26478842, 29791741, 33025985, 36243926]
+company_name.id : [2, 21073, 42316, 63193, 84589, 105552, 128925, 150003, 171741, 192526, 213649, 234960]
+info_type.id : [1, 11, 21, 31, 41, 51, 62, 72, 82, 92, 102, 113]
+keyword.id : [4, 11969, 23986, 36049, 47819, 60026, 73607, 85702, 97542, 109705, 122030, 134170]
+movie_companies.movie_id : [286, 474805, 896127, 1305037, 1648931, 1775344, 1917812, 2042183, 2166702, 2298919, 2405435, 2525734]
+movie_companies.company_id : [1, 696, 2263, 6083, 11272, 13865, 21415, 43710, 72314, 86580, 119508, 234967]
+movie_companies.id : [285, 241928, 470802, 705741, 935816, 1172172, 1434740, 1666027, 1899564, 2140923, 2378874, 2609084]
+movie_info.movie_id : [633, 474373, 922830, 1363603, 1684084, 1804044, 1941242, 2068010, 2194435, 2312361, 2413596, 2525758]
+movie_info.info_type_id : [35, 42, 46, 54, 61, 65, 70, 76, 80, 86, 88, 109]
+movie_info.id : [292, 1333776, 2694837, 4068695, 5345950, 6723240, 8157535, 9557362, 10877599, 12186284, 13500550, 14835633]
+movie_keyword.movie_id : [51, 815906, 1580970, 1732062, 1826198, 1931012, 2047227, 2157175, 2262816, 2351276, 2426615, 2525642]
+movie_keyword.keyword_id : [4, 745, 1615, 2551, 3658, 5614, 8077, 11879, 18218, 28194, 50334, 134127]
+movie_keyword.id : [17, 404904, 810722, 1208547, 1616516, 2014008, 2454767, 2871826, 3284758, 3701074, 4128248, 4523892]
+name.id : [181, 370019, 771638, 1147018, 1533420, 1896948, 2311575, 2686109, 3051862, 3409746, 3795448, 4167429]
+role_type.id : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+title.id : [124, 230052, 451617, 676430, 901799, 1122049, 1372227, 1599149, 1838041, 2068913, 2300435, 2528216]
+title.production_year : [1896, 1899, 1901, 1903, 1906, 1908, 1929, 1938, 1942, 1944, 1946, 2016]
+**Candidates**
+C1 (arms 1): SeqScan(cn) BitmapScan(mc) BitmapScan(t) BitmapScan(mk) BitmapScan(k) BitmapScan(mi) SeqScan(it) BitmapScan(ci) BitmapScan(an) BitmapScan(chn) SeqScan(rt) BitmapScan(n) NestLoop(cn mc) NestLoop(cn mc t) NestLoop(cn mc t mk) NestLoop(cn mc t mk k) NestLoop(cn mc t mk k mi) NestLoop(cn mc t mk k mi it) NestLoop(cn mc t mk k mi it ci) NestLoop(cn mc t mk k mi it ci an) NestLoop(cn mc t mk k mi it ci an chn) NestLoop(cn mc t mk k mi it ci an chn rt) NestLoop(cn mc t mk k mi it ci an chn rt n) Leading((((((((((((cn mc) t) mk) k) mi) it) ci) an) chn) rt) n))
+C2 (arms 3): SeqScan(cn) IndexScan(mc) IndexScan(t) IndexScan(ci) IndexScan(chn) IndexScan(rt) IndexScan(mi) IndexScan(it) IndexScan(mk) IndexScan(k) IndexScan(n) IndexOnlyScan(an) NestLoop(cn mc) NestLoop(cn mc t) NestLoop(cn mc t ci) NestLoop(cn mc t ci chn) NestLoop(cn mc t ci chn rt) NestLoop(cn mc t ci chn rt mi) NestLoop(cn mc t ci chn rt mi it) NestLoop(cn mc t ci chn rt mi it mk) NestLoop(cn mc t ci chn rt mi it mk k) NestLoop(cn mc t ci chn rt mi it mk k n) NestLoop(cn mc t ci chn rt mi it mk k n an) Leading((((((((((((cn mc) t) ci) chn) rt) mi) it) mk) k) n) an))
+C3 (arms 4): SeqScan(cn) IndexScan(mc) IndexScan(t) IndexScan(mk) IndexScan(mi) IndexScan(it) IndexScan(ci) IndexOnlyScan(an) IndexScan(chn) IndexScan(k) IndexScan(rt) IndexScan(n) NestLoop(cn mc) NestLoop(cn mc t) NestLoop(cn mc t mk) NestLoop(cn mc t mk mi) NestLoop(cn mc t mk mi it) NestLoop(cn mc t mk mi it ci) NestLoop(cn mc t mk mi it ci an) NestLoop(cn mc t mk mi it ci an chn) NestLoop(cn mc t mk mi it ci an chn k) NestLoop(cn mc t mk mi it ci an chn k rt) NestLoop(cn mc t mk mi it ci an chn k rt n) Leading((((((((((((cn mc) t) mk) mi) it) ci) an) chn) k) rt) n))
+C4 (arms 0, 2): SeqScan(mi) SeqScan(chn) SeqScan(an) SeqScan(n) SeqScan(ci) SeqScan(mc) SeqScan(mk) SeqScan(t) SeqScan(k) SeqScan(cn) SeqScan(rt) SeqScan(it) HashJoin(an n) HashJoin(mk t) HashJoin(mk t k) HashJoin(mc mk t k) HashJoin(mc mk t k cn) HashJoin(ci mc mk t k cn) HashJoin(an n ci mc mk t k cn) HashJoin(an n ci mc mk t k cn rt) HashJoin(chn an n ci mc mk t k cn rt) HashJoin(mi chn an n ci mc mk t k cn rt) HashJoin(mi chn an n ci mc mk t k cn rt it) Leading(((mi (chn (((an n) (ci ((mc ((mk t) k)) cn))) rt))) it))

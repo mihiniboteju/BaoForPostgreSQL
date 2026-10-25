@@ -1,0 +1,83 @@
+**Query**
+SELECT MIN(mi_idx.info) AS rating, MIN(t.title) AS north_european_dark_production FROM info_type AS it1, info_type AS it2, keyword AS k, kind_type AS kt, movie_info AS mi, movie_info_idx AS mi_idx, movie_keyword AS mk, title AS t WHERE it1.info  = 'countries' AND it2.info  = 'rating' AND k.keyword  is not null and k.keyword in ('murder', 'murder-in-title', 'blood', 'violence') AND kt.kind  in ('movie', 'episode') AND mi.info IN ('Sweden', 'Norway', 'Germany', 'Denmark', 'Swedish', 'Danish', 'Norwegian', 'German', 'USA', 'American') AND mi_idx.info  < '8.5' AND t.production_year  > 2005 AND kt.id = t.kind_id AND t.id = mi.movie_id AND t.id = mk.movie_id AND t.id = mi_idx.movie_id AND mk.movie_id = mi.movie_id AND mk.movie_id = mi_idx.movie_id AND mi.movie_id = mi_idx.movie_id AND k.id = mk.keyword_id AND it1.id = mi.info_type_id AND it2.id = mi_idx.info_type_id
+**Statistics**
+Table Size:
+it1 : 1 (113)
+it2 : 1 (113)
+k : 4 (134170)
+kt : 2 (7)
+mi : 2 (14835720)
+mi_idx : 3 (1380035)
+mk : 304 (4523930)
+t : 1 (2528312)
+Main Values:
+movie_info.info : {'Color', 1021852}, {'English', 811673}, {'USA', 573930}
+movie_info.movie_id : {1197283, 3938}, {2346436, 3446}, {1196981, 2953}
+movie_info.info_type_id : {16, 3037499}, {3, 1451069}, {7, 1412676}
+movie_info_idx.info : {7, 27601}, {5, 27509}, {6, 27049}
+movie_info_idx.info_type_id : {100, 464198}, {101, 459276}, {99, 456470}
+movie_keyword.movie_id : {1817376, 1206}, {2169367, 1206}, {1908752, 1056}
+movie_keyword.keyword_id : {335, 72534}, {16264, 64692}, {117, 41922}
+title.title : {'(#1.1)', 14157}, {'(#1.2)', 10702}, {'(#1.3)', 9101}
+title.production_year : {2012, 170897}, {2011, 160195}, {2010, 144184}
+title.kind_id : {7, 1555939}, {1, 650808}, {4, 121347}
+NDV:
+info_type.info : 113
+info_type.id : 113
+info_type.info : 113
+info_type.id : 113
+keyword.keyword : 134170
+keyword.id : 134170
+kind_type.kind : 7
+kind_type.id : 7
+movie_info.info : 20552
+movie_info.movie_id : 345133
+movie_info.info_type_id : 69
+movie_info.id : 14766645
+movie_info_idx.info : 11005
+movie_info_idx.movie_id : 452401
+movie_info_idx.info_type_id : 4
+movie_info_idx.id : 1380035
+movie_keyword.movie_id : 99166
+movie_keyword.keyword_id : 14848
+movie_keyword.id : 4523930
+title.title : 141378
+title.production_year : 121
+title.kind_id : 6
+title.id : 2528064
+Min Max:
+info_type.id : {1, 113}
+info_type.id : {1, 113}
+keyword.id : {1, 134170}
+kind_type.id : {1, 7}
+movie_info.movie_id : {1, 2526430}
+movie_info.info_type_id : {1, 110}
+movie_info.id : {1, 14835720}
+movie_info_idx.movie_id : {2, 2525793}
+movie_info_idx.info_type_id : {99, 113}
+movie_info_idx.id : {1, 1380035}
+movie_keyword.movie_id : {2, 2525971}
+movie_keyword.keyword_id : {1, 134170}
+movie_keyword.id : {1, 4523930}
+title.production_year : {1880, 2019}
+title.kind_id : {1, 7}
+title.id : {1, 2528312}
+Histograms:
+info_type.id : [1, 11, 21, 31, 41, 51, 62, 72, 82, 92, 102, 113]
+info_type.id : [1, 11, 21, 31, 41, 51, 62, 72, 82, 92, 102, 113]
+keyword.id : [6, 12054, 23898, 36201, 48611, 60833, 74152, 86341, 98476, 110569, 122389, 134169]
+kind_type.id : [1, 2, 3, 4, 5, 6, 7]
+movie_info.movie_id : [65, 501625, 968056, 1385886, 1683595, 1800798, 1938408, 2059735, 2182430, 2306911, 2408167, 2526014]
+movie_info.info_type_id : [35, 42, 51, 57, 63, 67, 71, 77, 84, 86, 91, 109]
+movie_info.id : [466, 1323646, 2658477, 3997397, 5372228, 6751157, 8218353, 9522315, 10862467, 12224814, 13518115, 14835479]
+movie_info_idx.movie_id : [65, 384526, 783024, 1161803, 1493409, 1723089, 1869604, 2001277, 2134552, 2263653, 2395109, 2525626]
+movie_info_idx.id : [55, 122922, 249806, 373872, 500258, 621416, 760381, 881339, 1008219, 1129242, 1256911, 1379829]
+movie_keyword.movie_id : [51, 813967, 1562109, 1731930, 1821590, 1932681, 2054580, 2160460, 2263474, 2350338, 2424729, 2525769]
+movie_keyword.keyword_id : [5, 748, 1583, 2499, 3639, 5511, 7906, 11915, 18168, 28228, 50713, 134023]
+movie_keyword.id : [21, 404669, 804646, 1207391, 1595700, 2014237, 2476844, 2884888, 3286404, 3692582, 4117577, 4523877]
+title.production_year : [1894, 1901, 1904, 1918, 1921, 1926, 1931, 1935, 1938, 1941, 1945, 2015]
+title.id : [129, 232208, 463304, 685466, 911909, 1133738, 1385378, 1606837, 1843606, 2072532, 2303100, 2528241]
+**Candidates**
+C1 (arms 1): SeqScan(it2) SeqScan(k) BitmapScan(mk) BitmapScan(mi_idx) BitmapScan(t) SeqScan(kt) BitmapScan(mi) SeqScan(it1) NestLoop(k mk) NestLoop(k mk mi_idx) NestLoop(it2 k mk mi_idx) NestLoop(it2 k mk mi_idx t) NestLoop(it2 k mk mi_idx t kt) NestLoop(it2 k mk mi_idx t kt mi) NestLoop(it2 k mk mi_idx t kt mi it1) Leading((((((it2 ((k mk) mi_idx)) t) kt) mi) it1))
+C2 (arms 3, 4): SeqScan(it2) SeqScan(k) BitmapScan(mk) IndexScan(t) SeqScan(kt) IndexScan(mi_idx) IndexScan(mi) SeqScan(it1) NestLoop(k mk) NestLoop(k mk t) NestLoop(k mk t kt) NestLoop(k mk t kt mi_idx) NestLoop(it2 k mk t kt mi_idx) NestLoop(it2 k mk t kt mi_idx mi) NestLoop(it2 k mk t kt mi_idx mi it1) Leading((((it2 ((((k mk) t) kt) mi_idx)) mi) it1))
+C3 (arms 0, 2): SeqScan(t) SeqScan(mi_idx) SeqScan(it2) SeqScan(mi) SeqScan(it1) SeqScan(mk) SeqScan(k) SeqScan(kt) HashJoin(mi_idx it2) HashJoin(mi it1) HashJoin(mk k) HashJoin(mi it1 mk k) HashJoin(mi_idx it2 mi it1 mk k) HashJoin(t mi_idx it2 mi it1 mk k) HashJoin(t mi_idx it2 mi it1 mk k kt) Leading(((t ((mi_idx it2) ((mi it1) (mk k)))) kt))

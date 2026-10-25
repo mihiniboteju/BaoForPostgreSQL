@@ -1,0 +1,1717 @@
+==============================================================================
+QUERY      : /home/mini/bao/mihini/BaoForPostgreSQL/job_unique/08268.sql
+MODEL      : qwen/qwen3.6-35b-a3b
+CANDIDATES : 3 unique plans
+ORDER      : letter index -> candidate index = [1, 2, 0]
+==============================================================================
+
+--- SYSTEM MESSAGE ---
+You are an expert PostgreSQL query optimizer. You reason about join orders, access paths and selectivity using table statistics. You answer with a single letter and nothing else.
+
+--- USER MESSAGE (exactly what was sent) ---
+**Query**
+SELECT MIN(an.name) AS cool_actor_pseudonym,
+       MIN(t.title) AS series_named_after_char
+FROM aka_name AS an,
+     cast_info AS ci,
+     company_name AS cn,
+     keyword AS k,
+     movie_companies AS mc,
+     movie_keyword AS mk,
+     name AS n,
+     title AS t
+WHERE cn.country_code ='[us]'
+  AND k.keyword ='character-name-in-title'
+  AND an.person_id = n.id
+  AND n.id = ci.person_id
+  AND ci.movie_id = t.id
+  AND t.id = mk.movie_id
+  AND mk.keyword_id = k.id
+  AND t.id = mc.movie_id
+  AND mc.company_id = cn.id
+  AND an.person_id = ci.person_id
+  AND ci.movie_id = mc.movie_id
+  AND ci.movie_id = mk.movie_id
+  AND mc.movie_id = mk.movie_id
+  AND t.episode_nr BETWEEN 7  AND 52
+**Statistics**
+Table Size:
+alias : estimated rows reaching this table (largest id in parentheses)
+an : 2 (901343)
+ci : 37 (36244344)
+cn : 1 (234997)
+k : 1 (134170)
+mc : 5 (2609129)
+mk : 301 (4523930)
+n : 1 (4167491)
+t : 1 (2528312)
+Main Values:
+{value, rows} = a frequent value and the number of rows holding it
+aka_name.name : {'Andy', 270}, {'Alex', 240}, {'Joe', 240}
+cast_info.person_id : {1495180, 25330}, {598206, 13268}, {253457, 12062}
+company_name.country_code : {'[us]', 84951}, {'[gb]', 15471}, {'[de]', 10152}
+movie_companies.company_id : {6, 61315}, {19, 48617}, {160, 34701}
+movie_keyword.movie_id : {2126321, 1056}, {2200593, 1056}, {1713694, 905}
+movie_keyword.keyword_id : {335, 73589}, {16264, 62279}, {117, 39509}
+title.title : {'(#1.1)', 11966}, {'(#1.2)', 10871}, {'(#1.4)', 9354}
+title.episode_nr : {1, 72555}, {2, 64465}, {3, 61178}
+NDV:
+distinct values in the column (equals row count if every value is unique)
+aka_name.name : 493995
+aka_name.person_id : 393719
+aka_name.id : 901343
+cast_info.person_id : 71638
+cast_info.movie_id : 946613
+cast_info.id : 36185040
+company_name.country_code : 160
+company_name.id : 234997
+keyword.keyword : 134170
+keyword.id : 134170
+movie_companies.movie_id : 480581
+movie_companies.company_id : 19650
+movie_companies.id : 2609129
+movie_keyword.movie_id : 97265
+movie_keyword.keyword_id : 14885
+movie_keyword.id : 4523930
+name.id : 4167696
+title.title : 143933
+title.id : 2528036
+title.episode_nr : 1163
+Min Max:
+{min, max} = smallest and largest value in the column
+aka_name.person_id : {4, 4167489}
+aka_name.id : {1, 901343}
+cast_info.person_id : {1, 4061926}
+cast_info.movie_id : {1, 2525975}
+cast_info.id : {1, 36244344}
+company_name.id : {1, 234997}
+keyword.id : {1, 134170}
+movie_companies.movie_id : {2, 2525745}
+movie_companies.company_id : {1, 234997}
+movie_companies.id : {1, 2609129}
+movie_keyword.movie_id : {2, 2525971}
+movie_keyword.keyword_id : {1, 134170}
+movie_keyword.id : {1, 4523930}
+name.id : {1, 4167491}
+title.id : {1, 2528312}
+title.episode_nr : {1, 91821}
+Histograms:
+[] = 12 evenly spaced values, each marking about 8% more rows
+aka_name.person_id : [4, 361938, 715852, 1074539, 1445742, 1822366, 2266837, 2680447, 3230342, 3818649, 4096062, 4167422]
+aka_name.id : [38, 84777, 164855, 247144, 327744, 406605, 493860, 574152, 657166, 736953, 819211, 901337]
+cast_info.person_id : [88, 316013, 629197, 972460, 1302204, 1640788, 2028379, 2406670, 2747041, 3012290, 3472589, 4061906]
+cast_info.movie_id : [118, 251073, 491625, 731283, 957332, 1179551, 1436623, 1684546, 1892537, 2109684, 2326513, 2525913]
+cast_info.id : [292, 3167574, 6427276, 9838350, 13091612, 16408679, 20011524, 23279470, 26452848, 29791806, 33157111, 36244155]
+company_name.id : [8, 21132, 41838, 62739, 84615, 106532, 129903, 150885, 171974, 192597, 213832, 234995]
+keyword.id : [3, 11842, 24230, 35909, 48300, 60686, 73817, 85843, 97830, 109956, 122171, 134170]
+movie_companies.movie_id : [457, 468052, 880619, 1298530, 1647031, 1777414, 1919574, 2044846, 2169837, 2296907, 2405751, 2525714]
+movie_companies.company_id : [1, 702, 2174, 6087, 11313, 14002, 21092, 41434, 72038, 86536, 121086, 234776]
+movie_companies.id : [168, 235456, 464364, 703013, 942645, 1172335, 1433462, 1668744, 1908297, 2139124, 2378861, 2609032]
+movie_keyword.movie_id : [593, 836228, 1611491, 1736313, 1835516, 1939820, 2062461, 2167923, 2269086, 2352517, 2424783, 2525631]
+movie_keyword.keyword_id : [4, 745, 1578, 2521, 3665, 5588, 8052, 11763, 17706, 27987, 50138, 134129]
+movie_keyword.id : [218, 416317, 825826, 1233566, 1643947, 2052929, 2505796, 2903574, 3309252, 3706773, 4118926, 4523666]
+name.id : [31, 373893, 757136, 1131366, 1515858, 1899641, 2324988, 2682356, 3037428, 3407748, 3783345, 4167485]
+title.id : [83, 236919, 458827, 682505, 907599, 1138472, 1389011, 1610465, 1840335, 2068331, 2304705, 2528281]
+title.episode_nr : [63, 109, 136, 155, 182, 229, 414, 943, 2296, 4323, 7843, 15561]
+**Candidates**
+B (arms 1): SeqScan(k) BitmapScan(mk) BitmapScan(t) BitmapScan(mc) BitmapScan(cn) BitmapScan(ci) BitmapScan(n) BitmapScan(an) NestLoop(k mk) NestLoop(k mk t) NestLoop(k mk t mc) NestLoop(k mk t mc cn) NestLoop(k mk t mc cn ci) NestLoop(k mk t mc cn ci n) NestLoop(k mk t mc cn ci n an) Leading((((((((k mk) t) mc) cn) ci) n) an))
+C (arms 3, 4): SeqScan(k) BitmapScan(mk) IndexScan(t) IndexScan(mc) IndexScan(cn) IndexScan(ci) IndexOnlyScan(n) IndexScan(an) NestLoop(k mk) NestLoop(k mk t) NestLoop(k mk t mc) NestLoop(k mk t mc cn) NestLoop(k mk t mc cn ci) NestLoop(k mk t mc cn ci n) NestLoop(k mk t mc cn ci n an) Leading((((((((k mk) t) mc) cn) ci) n) an))
+A (arms 0, 2): SeqScan(n) SeqScan(an) SeqScan(ci) SeqScan(mc) SeqScan(t) SeqScan(mk) SeqScan(k) SeqScan(cn) HashJoin(mk k) HashJoin(t mk k) HashJoin(mc t mk k) HashJoin(mc t mk k cn) HashJoin(ci mc t mk k cn) HashJoin(an ci mc t mk k cn) HashJoin(n an ci mc t mk k cn) Leading((n (an (ci ((mc (t (mk k))) cn)))))
+
+Which one of the candidate plans above will execute FASTEST on this database? Consider the access paths, the join order, and how selective the filters are. Answer with exactly one letter (A, B, C) and nothing else.
+
+--- RESPONSE ---
+text           : 'B'
+logprobs used  : False
+letter probs   : None
+residual mass  : None
+error          : None
+
+--- RAW RESPONSE (exactly what came back) ---
+{
+  "id": "gen-1792666495-3RhHi2U2Guu80LAElB3p",
+  "object": "chat.completion",
+  "created": 1792666495,
+  "model": "qwen/qwen3.6-35b-a3b",
+  "provider": "DeepInfra",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "length",
+      "native_finish_reason": "length",
+      "message": {
+        "role": "assistant",
+        "content": "B",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 3321,
+    "completion_tokens": 1,
+    "total_tokens": 3322,
+    "cost": 0.00033305,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00033305,
+      "upstream_inference_prompt_cost": 0.0003321,
+      "upstream_inference_completions_cost": 9.5e-07
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
+
+==============================================================================
+QUERY      : /home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16432.sql
+MODEL      : qwen/qwen3.6-35b-a3b
+CANDIDATES : 4 unique plans
+ORDER      : letter index -> candidate index = [1, 3, 0, 2]
+==============================================================================
+
+--- SYSTEM MESSAGE ---
+You are an expert PostgreSQL query optimizer. You reason about join orders, access paths and selectivity using table statistics. You answer with a single letter and nothing else.
+
+--- USER MESSAGE (exactly what was sent) ---
+**Query**
+SELECT MIN(t.title) AS typical_european_movie
+FROM company_type AS ct,
+     info_type AS it,
+     movie_companies AS mc,
+     movie_info AS mi,
+     title AS t
+WHERE ct.kind = 'production companies'
+  AND t.id = mi.movie_id
+  AND t.id = mc.movie_id
+  AND mc.movie_id = mi.movie_id
+  AND ct.id = mc.company_type_id
+  AND mc.note LIKE '%(theatrical)%'
+  AND mc.note LIKE '%(France)%'
+  AND it.id = mi.info_type_id
+  AND mi.info IN ('Sweden',
+'German',
+'America',
+'Denmark',
+'Bulgaria',
+'English',
+'Swedish',
+'Germany')
+**Statistics**
+Table Size:
+alias : estimated rows reaching this table (largest id in parentheses)
+ct : 1 (4)
+it : 113 (113)
+mc : 1510 (2609129)
+mi : 3 (14835720)
+t : 1 (2528312)
+Main Values:
+{value, rows} = a frequent value and the number of rows holding it
+movie_companies.company_type_id : {2, 1334569}, {1, 1274560}
+movie_companies.note : {'(in association with)', 20090}, {'(co-production)', 16872}, {'(2007) (USA) (DVD)', 10437}
+movie_info.movie_id : {1711584, 2973}, {1933962, 2973}, {2104300, 2973}
+movie_info.info_type_id : {16, 3095291}, {3, 1542690}, {7, 1409383}
+movie_info.info : {'Color', 982207}, {'English', 804300}, {'USA', 561969}
+title.title : {'(#1.1)', 12305}, {'(#1.2)', 10029}, {'(#1.3)', 9692}
+NDV:
+distinct values in the column (equals row count if every value is unique)
+company_type.kind : 4
+company_type.id : 4
+info_type.id : 113
+movie_companies.movie_id : 505110
+movie_companies.company_type_id : 2
+movie_companies.note : 5910
+movie_companies.id : 2609129
+movie_info.movie_id : 384661
+movie_info.info_type_id : 69
+movie_info.info : 20380
+movie_info.id : 14866913
+title.title : 141755
+title.id : 2528436
+Min Max:
+{min, max} = smallest and largest value in the column
+company_type.id : {1, 4}
+info_type.id : {1, 113}
+movie_companies.movie_id : {2, 2525745}
+movie_companies.company_type_id : {1, 2}
+movie_companies.id : {1, 2609129}
+movie_info.movie_id : {1, 2526430}
+movie_info.info_type_id : {1, 110}
+movie_info.id : {1, 14835720}
+title.id : {1, 2528312}
+Histograms:
+[] = 12 evenly spaced values, each marking about 8% more rows
+company_type.id : [1, 2, 3, 4]
+info_type.id : [1, 11, 21, 31, 41, 51, 62, 72, 82, 92, 102, 113]
+movie_companies.movie_id : [53, 452538, 875069, 1295987, 1647199, 1771237, 1911836, 2037088, 2159211, 2288357, 2400077, 2525698]
+movie_companies.id : [24, 229815, 463610, 697895, 935471, 1169093, 1434927, 1669561, 1902924, 2135705, 2370077, 2609115]
+movie_info.movie_id : [147, 473864, 925627, 1374450, 1685206, 1808826, 1944440, 2069152, 2189158, 2311473, 2409481, 2525735]
+movie_info.id : [174, 1376813, 2717787, 4030384, 5457179, 6791787, 8232396, 9578133, 10899176, 12173962, 13485853, 14835561]
+title.id : [35, 230660, 470105, 690466, 918552, 1139925, 1387430, 1621913, 1848873, 2078522, 2300786, 2528305]
+**Candidates**
+B (arms 1): SeqScan(mc) SeqScan(ct) BitmapScan(t) BitmapScan(mi) SeqScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) HashJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))
+D (arms 3): SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) SeqScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) HashJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))
+A (arms 4): SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) SeqScan(it) MergeJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) MergeJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))
+C (arms 0, 2): SeqScan(mi) SeqScan(t) SeqScan(mc) SeqScan(ct) SeqScan(it) HashJoin(mc ct) HashJoin(t mc ct) HashJoin(mi t mc ct) HashJoin(mi t mc ct it) Leading(((mi (t (mc ct))) it))
+
+Which one of the candidate plans above will execute FASTEST on this database? Consider the access paths, the join order, and how selective the filters are. Answer with exactly one letter (A, B, C, D) and nothing else.
+
+--- RESPONSE ---
+text           : 'C'
+logprobs used  : True
+letter probs   : {'C': 0.12877126178065001, 'D': 0.6539543688004734, 'B': 0.12877126178065001, 'A': 0.08850310763822644}
+residual mass  : 0.0
+error          : None
+
+--- RAW RESPONSE (exactly what came back) ---
+{
+  "id": "gen-1792666499-dky9hFAlUu8e7VjuXSqg",
+  "object": "chat.completion",
+  "created": 1792666499,
+  "model": "qwen/qwen3.6-35b-a3b",
+  "provider": "Parasail",
+  "system_fingerprint": null,
+  "service_tier": null,
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": {
+        "content": [
+          {
+            "token": "C",
+            "bytes": [
+              67
+            ],
+            "logprob": -2.0505447387695312,
+            "top_logprobs": [
+              {
+                "token": "C",
+                "bytes": [
+                  67
+                ],
+                "logprob": -2.0505447387695312
+              },
+              {
+                "token": "D",
+                "bytes": [
+                  68
+                ],
+                "logprob": -0.4255448281764984
+              },
+              {
+                "token": "B",
+                "bytes": [
+                  66
+                ],
+                "logprob": -2.0505447387695312
+              },
+              {
+                "token": "A",
+                "bytes": [
+                  65
+                ],
+                "logprob": -2.4255447387695312
+              },
+              {
+                "token": "<think>",
+                "bytes": [
+                  60,
+                  116,
+                  104,
+                  105,
+                  110,
+                  107,
+                  62
+                ],
+                "logprob": -8.300544738769531
+              },
+              {
+                "token": "The",
+                "bytes": [
+                  84,
+                  104,
+                  101
+                ],
+                "logprob": -8.613044738769531
+              },
+              {
+                "token": "To",
+                "bytes": [
+                  84,
+                  111
+                ],
+                "logprob": -10.363044738769531
+              },
+              {
+                "token": "Analysis",
+                "bytes": [
+                  65,
+                  110,
+                  97,
+                  108,
+                  121,
+                  115,
+                  105,
+                  115
+                ],
+                "logprob": -10.800544738769531
+              },
+              {
+                "token": "I",
+                "bytes": [
+                  73
+                ],
+                "logprob": -11.113044738769531
+              },
+              {
+                "token": "d",
+                "bytes": [
+                  100
+                ],
+                "logprob": -11.175544738769531
+              },
+              {
+                "token": "**",
+                "bytes": [
+                  42,
+                  42
+                ],
+                "logprob": -11.363044738769531
+              },
+              {
+                "token": "1",
+                "bytes": [
+                  49
+                ],
+                "logprob": -11.550544738769531
+              },
+              {
+                "token": "This",
+                "bytes": [
+                  84,
+                  104,
+                  105,
+                  115
+                ],
+                "logprob": -11.550544738769531
+              },
+              {
+                "token": "Based",
+                "bytes": [
+                  66,
+                  97,
+                  115,
+                  101,
+                  100
+                ],
+                "logprob": -11.613044738769531
+              },
+              {
+                "token": "a",
+                "bytes": [
+                  97
+                ],
+                "logprob": -11.675544738769531
+              },
+              {
+                "token": "K",
+                "bytes": [
+                  75
+                ],
+                "logprob": -11.738044738769531
+              },
+              {
+                "token": "G",
+                "bytes": [
+                  71
+                ],
+                "logprob": -11.800544738769531
+              },
+              {
+                "token": "E",
+                "bytes": [
+                  69
+                ],
+                "logprob": -11.863044738769531
+              },
+              {
+                "token": "Z",
+                "bytes": [
+                  90
+                ],
+                "logprob": -11.925544738769531
+              },
+              {
+                "token": "F",
+                "bytes": [
+                  70
+                ],
+                "logprob": -11.925544738769531
+              }
+            ]
+          }
+        ],
+        "refusal": null
+      },
+      "finish_reason": "length",
+      "native_finish_reason": "length",
+      "message": {
+        "role": "assistant",
+        "content": "C",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1856,
+    "completion_tokens": 1,
+    "total_tokens": 1857,
+    "cost": 0.00018655,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00018655,
+      "upstream_inference_prompt_cost": 0.0001856,
+      "upstream_inference_completions_cost": 9.5e-07
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
+
+==============================================================================
+QUERY      : /home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16425.sql
+MODEL      : qwen/qwen3.6-35b-a3b
+CANDIDATES : 4 unique plans
+ORDER      : letter index -> candidate index = [3, 2, 1, 0]
+==============================================================================
+
+--- SYSTEM MESSAGE ---
+You are an expert PostgreSQL query optimizer. You reason about join orders, access paths and selectivity using table statistics. You answer with a single letter and nothing else.
+
+--- USER MESSAGE (exactly what was sent) ---
+**Query**
+SELECT MIN(t.title) AS typical_european_movie
+FROM company_type AS ct,
+     info_type AS it,
+     movie_companies AS mc,
+     movie_info AS mi,
+     title AS t
+WHERE ct.kind = 'production companies'
+  AND t.id = mi.movie_id
+  AND t.id = mc.movie_id
+  AND mc.movie_id = mi.movie_id
+  AND ct.id = mc.company_type_id
+  AND mc.note LIKE '%(theatrical)%'
+  AND mc.note LIKE '%(France)%'
+  AND it.id = mi.info_type_id
+  AND mi.info IN ('Denmark',
+'Germany',
+'Swedish',
+'American',
+'Danish',
+'USA',
+'Norway',
+'Denish')
+**Statistics**
+Table Size:
+alias : estimated rows reaching this table (largest id in parentheses)
+ct : 1 (4)
+it : 113 (113)
+mc : 1352 (2609129)
+mi : 2 (14835720)
+t : 1 (2528312)
+Main Values:
+{value, rows} = a frequent value and the number of rows holding it
+movie_companies.company_type_id : {2, 1323437}, {1, 1285692}
+movie_companies.note : {'(in association with)', 18960}, {'(co-production)', 16177}, {'(2005) (USA) (DVD)', 9828}
+movie_info.movie_id : {1197283, 3958}, {1790838, 3464}, {2183773, 3464}
+movie_info.info_type_id : {16, 3021674}, {3, 1565016}, {7, 1377491}
+movie_info.info : {'Color', 1045983}, {'English', 759995}, {'USA', 584840}
+title.title : {'(#1.1)', 13062}, {'(#1.3)', 9523}, {'(#1.2)', 9270}
+NDV:
+distinct values in the column (equals row count if every value is unique)
+company_type.kind : 4
+company_type.id : 4
+info_type.id : 113
+movie_companies.movie_id : 510008
+movie_companies.company_type_id : 2
+movie_companies.note : 5658
+movie_companies.id : 2609129
+movie_info.movie_id : 366647
+movie_info.info_type_id : 69
+movie_info.info : 19793
+movie_info.id : 14843658
+title.title : 141444
+title.id : 2528189
+Min Max:
+{min, max} = smallest and largest value in the column
+company_type.id : {1, 4}
+info_type.id : {1, 113}
+movie_companies.movie_id : {2, 2525745}
+movie_companies.company_type_id : {1, 2}
+movie_companies.id : {1, 2609129}
+movie_info.movie_id : {1, 2526430}
+movie_info.info_type_id : {1, 110}
+movie_info.id : {1, 14835720}
+title.id : {1, 2528312}
+Histograms:
+[] = 12 evenly spaced values, each marking about 8% more rows
+company_type.id : [1, 2, 3, 4]
+info_type.id : [1, 11, 21, 31, 41, 51, 62, 72, 82, 92, 102, 113]
+movie_companies.movie_id : [54, 442267, 868608, 1284450, 1643830, 1773522, 1913291, 2038288, 2161880, 2292488, 2400335, 2525683]
+movie_companies.id : [140, 228922, 455847, 688892, 926066, 1154284, 1423054, 1659573, 1904115, 2138183, 2372797, 2609108]
+movie_info.movie_id : [188, 458788, 917932, 1364688, 1684546, 1811203, 1946096, 2063879, 2187218, 2308345, 2405033, 2526019]
+movie_info.id : [644, 1366006, 2719003, 4028447, 5332886, 6667474, 8119194, 9479742, 10786238, 12103539, 13512466, 14835696]
+title.id : [190, 224952, 455616, 681047, 908961, 1137887, 1393954, 1618068, 1847785, 2081427, 2310228, 2528305]
+**Candidates**
+D (arms 1): SeqScan(mc) SeqScan(ct) BitmapScan(t) BitmapScan(mi) SeqScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) HashJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))
+C (arms 3): SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) SeqScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) HashJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))
+B (arms 4): SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) SeqScan(it) MergeJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) MergeJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))
+A (arms 0, 2): SeqScan(mi) SeqScan(t) SeqScan(mc) SeqScan(ct) SeqScan(it) HashJoin(mc ct) HashJoin(t mc ct) HashJoin(mi t mc ct) HashJoin(mi t mc ct it) Leading(((mi (t (mc ct))) it))
+
+Which one of the candidate plans above will execute FASTEST on this database? Consider the access paths, the join order, and how selective the filters are. Answer with exactly one letter (A, B, C, D) and nothing else.
+
+--- RESPONSE ---
+text           : 'C'
+logprobs used  : True
+letter probs   : {'C': 0.3632122848838467, 'A': 0.282870011888694, 'D': 0.2202993867663325, 'B': 0.1336183164611267}
+residual mass  : 0.0
+error          : None
+
+--- RAW RESPONSE (exactly what came back) ---
+{
+  "id": "gen-1792666503-jRtYF3uCug6H80ezWzvr",
+  "object": "chat.completion",
+  "created": 1792666503,
+  "model": "qwen/qwen3.6-35b-a3b",
+  "provider": "Parasail",
+  "system_fingerprint": null,
+  "service_tier": null,
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": {
+        "content": [
+          {
+            "token": "C",
+            "bytes": [
+              67
+            ],
+            "logprob": -1.0137089490890503,
+            "top_logprobs": [
+              {
+                "token": "C",
+                "bytes": [
+                  67
+                ],
+                "logprob": -1.0137089490890503
+              },
+              {
+                "token": "A",
+                "bytes": [
+                  65
+                ],
+                "logprob": -1.2637089490890503
+              },
+              {
+                "token": "D",
+                "bytes": [
+                  68
+                ],
+                "logprob": -1.5137089490890503
+              },
+              {
+                "token": "B",
+                "bytes": [
+                  66
+                ],
+                "logprob": -2.01370906829834
+              },
+              {
+                "token": "<think>",
+                "bytes": [
+                  60,
+                  116,
+                  104,
+                  105,
+                  110,
+                  107,
+                  62
+                ],
+                "logprob": -7.88870906829834
+              },
+              {
+                "token": "The",
+                "bytes": [
+                  84,
+                  104,
+                  101
+                ],
+                "logprob": -9.26370906829834
+              },
+              {
+                "token": "a",
+                "bytes": [
+                  97
+                ],
+                "logprob": -10.45120906829834
+              },
+              {
+                "token": "c",
+                "bytes": [
+                  99
+                ],
+                "logprob": -10.51370906829834
+              },
+              {
+                "token": "d",
+                "bytes": [
+                  100
+                ],
+                "logprob": -10.82620906829834
+              },
+              {
+                "token": "I",
+                "bytes": [
+                  73
+                ],
+                "logprob": -10.88870906829834
+              },
+              {
+                "token": "**",
+                "bytes": [
+                  42,
+                  42
+                ],
+                "logprob": -11.26370906829834
+              },
+              {
+                "token": "To",
+                "bytes": [
+                  84,
+                  111
+                ],
+                "logprob": -11.38870906829834
+              },
+              {
+                "token": "G",
+                "bytes": [
+                  71
+                ],
+                "logprob": -11.45120906829834
+              },
+              {
+                "token": "b",
+                "bytes": [
+                  98
+                ],
+                "logprob": -11.45120906829834
+              },
+              {
+                "token": "Analysis",
+                "bytes": [
+                  65,
+                  110,
+                  97,
+                  108,
+                  121,
+                  115,
+                  105,
+                  115
+                ],
+                "logprob": -11.51370906829834
+              },
+              {
+                "token": "S",
+                "bytes": [
+                  83
+                ],
+                "logprob": -11.63870906829834
+              },
+              {
+                "token": "F",
+                "bytes": [
+                  70
+                ],
+                "logprob": -11.70120906829834
+              },
+              {
+                "token": "E",
+                "bytes": [
+                  69
+                ],
+                "logprob": -11.76370906829834
+              },
+              {
+                "token": "K",
+                "bytes": [
+                  75
+                ],
+                "logprob": -11.76370906829834
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -11.76370906829834
+              }
+            ]
+          }
+        ],
+        "refusal": null
+      },
+      "finish_reason": "length",
+      "native_finish_reason": "length",
+      "message": {
+        "role": "assistant",
+        "content": "C",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1859,
+    "completion_tokens": 1,
+    "total_tokens": 1860,
+    "cost": 0.00018685,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00018685,
+      "upstream_inference_prompt_cost": 0.0001859,
+      "upstream_inference_completions_cost": 9.5e-07
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
+
+==============================================================================
+QUERY      : /home/mini/bao/mihini/BaoForPostgreSQL/job_unique/13509.sql
+MODEL      : qwen/qwen3.6-35b-a3b
+CANDIDATES : 5 unique plans
+ORDER      : letter index -> candidate index = [4, 0, 1, 2, 3]
+==============================================================================
+
+--- SYSTEM MESSAGE ---
+You are an expert PostgreSQL query optimizer. You reason about join orders, access paths and selectivity using table statistics. You answer with a single letter and nothing else.
+
+--- USER MESSAGE (exactly what was sent) ---
+**Query**
+SELECT MIN(cn1.name) AS first_company,
+       MIN(cn2.name) AS second_company,
+       MIN(mi_idx1.info) AS first_rating,
+       MIN(mi_idx2.info) AS second_rating,
+       MIN(t1.title) AS first_movie,
+       MIN(t2.title) AS second_movie
+FROM company_name AS cn1,
+     company_name AS cn2,
+     info_type AS it1,
+     info_type AS it2,
+     kind_type AS kt1,
+     kind_type AS kt2,
+     link_type AS lt,
+     movie_companies AS mc1,
+     movie_companies AS mc2,
+     movie_info_idx AS mi_idx1,
+     movie_info_idx AS mi_idx2,
+     movie_link AS ml,
+     title AS t1,
+     title AS t2
+WHERE it1.info = 'rating'
+  AND it2.info = 'rating'
+  AND lt.id = ml.link_type_id
+  AND t1.id = ml.movie_id
+  AND t2.id = ml.linked_movie_id
+  AND it1.id = mi_idx1.info_type_id
+  AND t1.id = mi_idx1.movie_id
+  AND kt1.id = t1.kind_id
+  AND cn1.id = mc1.company_id
+  AND t1.id = mc1.movie_id
+  AND ml.movie_id = mi_idx1.movie_id
+  AND ml.movie_id = mc1.movie_id
+  AND mi_idx1.movie_id = mc1.movie_id
+  AND it2.id = mi_idx2.info_type_id
+  AND t2.id = mi_idx2.movie_id
+  AND kt2.id = t2.kind_id
+  AND cn2.id = mc2.company_id
+  AND t2.id = mc2.movie_id
+  AND ml.linked_movie_id = mi_idx2.movie_id
+  AND ml.linked_movie_id = mc2.movie_id
+  AND kt1.kind IN ('tv series')
+  AND kt2.kind IN ('tv series')
+  AND mi_idx2.movie_id = mc2.movie_id
+  AND mi_idx2.info < '9'
+AND cn1.country_code = '[se]'
+AND t2.production_year BETWEEN 1988  AND 2008
+AND lt.link IN ('spoofed in',
+'spoofs',
+'spin off from')
+**Statistics**
+Table Size:
+alias : estimated rows reaching this table (largest id in parentheses)
+cn1 : 1 (234997)
+cn2 : 1 (234997)
+it1 : 1 (113)
+it2 : 1 (113)
+kt1 : 1 (7)
+kt2 : 1 (7)
+lt : 3 (18)
+mc1 : 5 (2609129)
+mc2 : 5 (2609129)
+mi_idx1 : 1380035 (1380035)
+mi_idx2 : 1380035 (1380035)
+ml : 29997 (29997)
+t1 : 1 (2528312)
+t2 : 1 (2528312)
+Main Values:
+{value, rows} = a frequent value and the number of rows holding it
+company_name.name : {'Universal Pictures Inter...', 63}, {'United International Pic...', 47}, {'Walt Disney Studios Home...', 47}
+company_name.country_code : {'[us]', 84897}, {'[gb]', 16136}, {'[fr]', 10262}
+company_name.name : {'Universal Pictures Inter...', 63}, {'United International Pic...', 47}, {'Walt Disney Studios Home...', 47}
+movie_companies.company_id : {6, 60445}, {19, 44790}, {160, 36615}
+movie_companies.company_id : {6, 60445}, {19, 44790}, {160, 36615}
+movie_info_idx.info : {6, 27923}, {5, 26267}, {7, 25807}
+movie_info_idx.info_type_id : {99, 461668}, {100, 461484}, {101, 456746}
+movie_info_idx.info : {6, 27923}, {5, 26267}, {7, 25807}
+movie_info_idx.info_type_id : {99, 461668}, {100, 461484}, {101, 456746}
+movie_link.link_type_id : {5, 8593}, {6, 5503}, {9, 5186}
+movie_link.movie_id : {132249, 569}, {73710, 517}, {133643, 276}
+movie_link.linked_movie_id : {2310522, 131}, {905719, 72}, {1196877, 70}
+title.title : {'(#1.1)', 12052}, {'(#1.2)', 10451}, {'(#1.4)', 9861}
+title.kind_id : {7, 1541774}, {1, 659593}, {4, 117321}
+title.title : {'(#1.1)', 12052}, {'(#1.2)', 10451}, {'(#1.4)', 9861}
+title.kind_id : {7, 1541774}, {1, 659593}, {4, 117321}
+title.production_year : {2012, 168480}, {2011, 162496}, {2010, 145134}
+NDV:
+distinct values in the column (equals row count if every value is unique)
+company_name.name : 208009
+company_name.id : 234997
+company_name.country_code : 162
+company_name.name : 208009
+company_name.id : 234997
+info_type.info : 113
+info_type.id : 113
+info_type.info : 113
+info_type.id : 113
+kind_type.id : 7
+kind_type.kind : 7
+kind_type.id : 7
+kind_type.kind : 7
+link_type.id : 18
+link_type.link : 18
+movie_companies.company_id : 19789
+movie_companies.movie_id : 514505
+movie_companies.id : 2609129
+movie_companies.company_id : 19789
+movie_companies.movie_id : 514505
+movie_companies.id : 2609129
+movie_info_idx.info : 11071
+movie_info_idx.info_type_id : 4
+movie_info_idx.movie_id : 442930
+movie_info_idx.id : 1380035
+movie_info_idx.info : 11071
+movie_info_idx.info_type_id : 4
+movie_info_idx.movie_id : 442930
+movie_info_idx.id : 1380035
+movie_link.link_type_id : 16
+movie_link.movie_id : 6411
+movie_link.linked_movie_id : 16169
+movie_link.id : 29997
+title.title : 139528
+title.id : 2528466
+title.kind_id : 6
+title.title : 139528
+title.id : 2528466
+title.kind_id : 6
+title.production_year : 120
+Min Max:
+{min, max} = smallest and largest value in the column
+company_name.id : {1, 234997}
+company_name.id : {1, 234997}
+info_type.id : {1, 113}
+info_type.id : {1, 113}
+kind_type.id : {1, 7}
+kind_type.id : {1, 7}
+link_type.id : {1, 18}
+movie_companies.company_id : {1, 234997}
+movie_companies.movie_id : {2, 2525745}
+movie_companies.id : {1, 2609129}
+movie_companies.company_id : {1, 234997}
+movie_companies.movie_id : {2, 2525745}
+movie_companies.id : {1, 2609129}
+movie_info_idx.info_type_id : {99, 113}
+movie_info_idx.movie_id : {2, 2525793}
+movie_info_idx.id : {1, 1380035}
+movie_info_idx.info_type_id : {99, 113}
+movie_info_idx.movie_id : {2, 2525793}
+movie_info_idx.id : {1, 1380035}
+movie_link.link_type_id : {1, 17}
+movie_link.movie_id : {2, 186175}
+movie_link.linked_movie_id : {284, 2524994}
+movie_link.id : {1, 29997}
+title.id : {1, 2528312}
+title.kind_id : {1, 7}
+title.id : {1, 2528312}
+title.kind_id : {1, 7}
+title.production_year : {1880, 2019}
+Histograms:
+[] = 12 evenly spaced values, each marking about 8% more rows
+company_name.id : [8, 21286, 42948, 64267, 85480, 106754, 130573, 152016, 172327, 193417, 213968, 234996]
+company_name.id : [8, 21286, 42948, 64267, 85480, 106754, 130573, 152016, 172327, 193417, 213968, 234996]
+info_type.id : [1, 11, 21, 31, 41, 51, 62, 72, 82, 92, 102, 113]
+info_type.id : [1, 11, 21, 31, 41, 51, 62, 72, 82, 92, 102, 113]
+kind_type.id : [1, 2, 3, 4, 5, 6, 7]
+kind_type.id : [1, 2, 3, 4, 5, 6, 7]
+link_type.id : [1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16, 18]
+movie_companies.company_id : [1, 707, 2222, 5991, 11272, 13865, 20926, 41823, 72084, 87367, 120876, 234970]
+movie_companies.movie_id : [54, 459940, 887243, 1316041, 1649550, 1779123, 1917013, 2043726, 2170662, 2300788, 2406505, 2525679]
+movie_companies.id : [25, 236179, 472268, 710792, 951070, 1177014, 1437786, 1675761, 1907977, 2141408, 2378546, 2609119]
+movie_companies.company_id : [1, 707, 2222, 5991, 11272, 13865, 20926, 41823, 72084, 87367, 120876, 234970]
+movie_companies.movie_id : [54, 459940, 887243, 1316041, 1649550, 1779123, 1917013, 2043726, 2170662, 2300788, 2406505, 2525679]
+movie_companies.id : [25, 236179, 472268, 710792, 951070, 1177014, 1437786, 1675761, 1907977, 2141408, 2378546, 2609119]
+movie_info_idx.movie_id : [118, 385234, 768489, 1146700, 1472813, 1722665, 1867443, 2001793, 2136534, 2266224, 2392325, 2525666]
+movie_info_idx.id : [86, 123769, 242883, 369105, 495108, 621006, 759218, 882172, 1010508, 1132026, 1254403, 1379960]
+movie_info_idx.movie_id : [118, 385234, 768489, 1146700, 1472813, 1722665, 1867443, 2001793, 2136534, 2266224, 2392325, 2525666]
+movie_info_idx.id : [86, 123769, 242883, 369105, 495108, 621006, 759218, 882172, 1010508, 1132026, 1254403, 1379960]
+movie_link.movie_id : [2, 11123, 24463, 53600, 74598, 84913, 110180, 121859, 128815, 138918, 151201, 186175]
+movie_link.linked_movie_id : [284, 142303, 503532, 905865, 1283059, 1497326, 1717048, 1882215, 2078222, 2267908, 2384088, 2524994]
+movie_link.id : [1, 2700, 5400, 8099, 10799, 13499, 16498, 19198, 21898, 24597, 27297, 29997]
+title.id : [272, 228736, 451488, 675625, 902837, 1128389, 1378299, 1616749, 1842357, 2073484, 2298397, 2528278]
+title.id : [272, 228736, 451488, 675625, 902837, 1128389, 1378299, 1616749, 1842357, 2073484, 2298397, 2528278]
+title.production_year : [1896, 1899, 1904, 1908, 1925, 1928, 1933, 1936, 1939, 1942, 1946, 2015]
+**Candidates**
+E (arms 4): IndexScan(it2) SeqScan(it1) IndexScan(mi_idx1) SeqScan(lt) BitmapScan(ml) IndexScan(mc1) IndexScan(cn1) IndexScan(t2) IndexScan(kt2) IndexScan(mc2) IndexScan(cn2) IndexScan(t1) IndexScan(kt1) IndexScan(mi_idx2) NestLoop(lt ml) MergeJoin(mi_idx1 lt ml) NestLoop(it1 mi_idx1 lt ml) NestLoop(it1 mi_idx1 lt ml mc1) NestLoop(it1 mi_idx1 lt ml mc1 cn1) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2 cn2) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2 cn2 t1) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2 cn2 t1 kt1) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2 cn2 t1 kt1 mi_idx2) Leading(((((((((it2 (((it1 (mi_idx1 (lt ml))) mc1) cn1)) t2) kt2) mc2) cn2) t1) kt1) mi_idx2))
+A (arms 0): SeqScan(cn2) IndexScan(t1) SeqScan(t2) SeqScan(mc2) IndexScan(mi_idx1) IndexScan(ml) IndexScan(mc1) SeqScan(cn1) SeqScan(mi_idx2) SeqScan(it2) SeqScan(kt2) SeqScan(it1) SeqScan(lt) SeqScan(kt1) MergeJoin(mi_idx1 ml) MergeJoin(mi_idx1 ml mc1) HashJoin(mi_idx1 ml mc1 cn1) HashJoin(mi_idx1 ml mc1 cn1 mi_idx2) HashJoin(mi_idx1 ml mc1 cn1 mi_idx2 it2) HashJoin(mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2) HashJoin(t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2) HashJoin(t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2) HashJoin(t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1) MergeJoin(t1 t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1) HashJoin(t1 t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1 lt) HashJoin(cn2 t1 t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1 lt) HashJoin(cn2 t1 t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1 lt kt1) Leading(((cn2 ((t1 (((t2 (mc2 (((((mi_idx1 ml) mc1) cn1) mi_idx2) it2))) kt2) it1)) lt)) kt1))
+B (arms 3): SeqScan(kt2) SeqScan(it2) SeqScan(ml) SeqScan(lt) IndexScan(mi_idx1) SeqScan(it1) IndexScan(mc1) IndexScan(cn1) IndexScan(t2) IndexScan(mc2) IndexScan(cn2) IndexScan(t1) SeqScan(kt1) IndexScan(mi_idx2) HashJoin(ml lt) NestLoop(ml lt mi_idx1) HashJoin(ml lt mi_idx1 it1) NestLoop(ml lt mi_idx1 it1 mc1) NestLoop(ml lt mi_idx1 it1 mc1 cn1) NestLoop(it2 ml lt mi_idx1 it1 mc1 cn1) NestLoop(it2 ml lt mi_idx1 it1 mc1 cn1 t2) NestLoop(kt2 it2 ml lt mi_idx1 it1 mc1 cn1 t2) NestLoop(kt2 it2 ml lt mi_idx1 it1 mc1 cn1 t2 mc2) NestLoop(kt2 it2 ml lt mi_idx1 it1 mc1 cn1 t2 mc2 cn2) NestLoop(kt2 it2 ml lt mi_idx1 it1 mc1 cn1 t2 mc2 cn2 t1) NestLoop(kt2 it2 ml lt mi_idx1 it1 mc1 cn1 t2 mc2 cn2 t1 kt1) NestLoop(kt2 it2 ml lt mi_idx1 it1 mc1 cn1 t2 mc2 cn2 t1 kt1 mi_idx2) Leading(((((((kt2 ((it2 (((((ml lt) mi_idx1) it1) mc1) cn1)) t2)) mc2) cn2) t1) kt1) mi_idx2))
+C (arms 1): SeqScan(mi_idx2) SeqScan(it2) SeqScan(ml) BitmapScan(t2) SeqScan(lt) BitmapScan(mc2) BitmapScan(cn2) SeqScan(it1) BitmapScan(t1) BitmapScan(mc1) BitmapScan(mi_idx1) SeqScan(kt2) BitmapScan(cn1) SeqScan(kt1) HashJoin(mi_idx2 it2) HashJoin(mi_idx2 it2 ml) NestLoop(mi_idx2 it2 ml t2) HashJoin(mi_idx2 it2 ml t2 lt) NestLoop(mi_idx2 it2 ml t2 lt mc2) NestLoop(mi_idx2 it2 ml t2 lt mc2 cn2) NestLoop(mi_idx2 it2 ml t2 lt mc2 cn2 it1) NestLoop(mi_idx2 it2 ml t2 lt mc2 cn2 it1 t1) NestLoop(mi_idx2 it2 ml t2 lt mc2 cn2 it1 t1 mc1) NestLoop(mi_idx2 it2 ml t2 lt mc2 cn2 it1 t1 mc1 mi_idx1) NestLoop(mi_idx2 it2 ml t2 lt mc2 cn2 it1 t1 mc1 mi_idx1 kt2) NestLoop(mi_idx2 it2 ml t2 lt mc2 cn2 it1 t1 mc1 mi_idx1 kt2 cn1) NestLoop(mi_idx2 it2 ml t2 lt mc2 cn2 it1 t1 mc1 mi_idx1 kt2 cn1 kt1) Leading((((((((((((((mi_idx2 it2) ml) t2) lt) mc2) cn2) it1) t1) mc1) mi_idx1) kt2) cn1) kt1))
+D (arms 2): SeqScan(t2) SeqScan(cn2) SeqScan(mc2) SeqScan(mi_idx2) SeqScan(t1) SeqScan(mi_idx1) SeqScan(mc1) SeqScan(cn1) SeqScan(it1) SeqScan(kt1) SeqScan(ml) SeqScan(lt) SeqScan(it2) SeqScan(kt2) HashJoin(mc1 cn1) HashJoin(mi_idx1 mc1 cn1) HashJoin(mi_idx1 mc1 cn1 it1) HashJoin(t1 mi_idx1 mc1 cn1 it1) HashJoin(t1 mi_idx1 mc1 cn1 it1 kt1) HashJoin(t1 mi_idx1 mc1 cn1 it1 kt1 ml) HashJoin(t1 mi_idx1 mc1 cn1 it1 kt1 ml lt) HashJoin(mi_idx2 t1 mi_idx1 mc1 cn1 it1 kt1 ml lt) HashJoin(mi_idx2 t1 mi_idx1 mc1 cn1 it1 kt1 ml lt it2) HashJoin(mc2 mi_idx2 t1 mi_idx1 mc1 cn1 it1 kt1 ml lt it2) HashJoin(cn2 mc2 mi_idx2 t1 mi_idx1 mc1 cn1 it1 kt1 ml lt it2) HashJoin(t2 cn2 mc2 mi_idx2 t1 mi_idx1 mc1 cn1 it1 kt1 ml lt it2) HashJoin(t2 cn2 mc2 mi_idx2 t1 mi_idx1 mc1 cn1 it1 kt1 ml lt it2 kt2) Leading(((t2 (cn2 (mc2 ((mi_idx2 ((((t1 ((mi_idx1 (mc1 cn1)) it1)) kt1) ml) lt)) it2)))) kt2))
+
+Which one of the candidate plans above will execute FASTEST on this database? Consider the access paths, the join order, and how selective the filters are. Answer with exactly one letter (A, B, C, D, E) and nothing else.
+
+--- RESPONSE ---
+text           : 'E'
+logprobs used  : True
+letter probs   : {'E': 0.7522781251732797, 'C': 0.11536558694411327, 'B': 0.0792895310481168, 'A': 0.03745372244965059, 'D': 0.015613034384839635}
+residual mass  : 0.0
+error          : None
+
+--- RAW RESPONSE (exactly what came back) ---
+{
+  "id": "gen-1792666505-MC8RvQKBmbpPvuwb5D8K",
+  "object": "chat.completion",
+  "created": 1792666505,
+  "model": "qwen/qwen3.6-35b-a3b",
+  "provider": "Parasail",
+  "system_fingerprint": null,
+  "service_tier": null,
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": {
+        "content": [
+          {
+            "token": "E",
+            "bytes": [
+              69
+            ],
+            "logprob": -0.28499269485473633,
+            "top_logprobs": [
+              {
+                "token": "E",
+                "bytes": [
+                  69
+                ],
+                "logprob": -0.28499269485473633
+              },
+              {
+                "token": "C",
+                "bytes": [
+                  67
+                ],
+                "logprob": -2.1599926948547363
+              },
+              {
+                "token": "B",
+                "bytes": [
+                  66
+                ],
+                "logprob": -2.5349926948547363
+              },
+              {
+                "token": "A",
+                "bytes": [
+                  65
+                ],
+                "logprob": -3.2849926948547363
+              },
+              {
+                "token": "D",
+                "bytes": [
+                  68
+                ],
+                "logprob": -4.159992694854736
+              },
+              {
+                "token": "<think>",
+                "bytes": [
+                  60,
+                  116,
+                  104,
+                  105,
+                  110,
+                  107,
+                  62
+                ],
+                "logprob": -8.784992218017578
+              },
+              {
+                "token": "The",
+                "bytes": [
+                  84,
+                  104,
+                  101
+                ],
+                "logprob": -10.409992218017578
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -11.034992218017578
+              },
+              {
+                "token": "K",
+                "bytes": [
+                  75
+                ],
+                "logprob": -11.097492218017578
+              },
+              {
+                "token": "I",
+                "bytes": [
+                  73
+                ],
+                "logprob": -11.534992218017578
+              },
+              {
+                "token": "G",
+                "bytes": [
+                  71
+                ],
+                "logprob": -11.784992218017578
+              },
+              {
+                "token": "**",
+                "bytes": [
+                  42,
+                  42
+                ],
+                "logprob": -12.034992218017578
+              },
+              {
+                "token": "F",
+                "bytes": [
+                  70
+                ],
+                "logprob": -12.159992218017578
+              },
+              {
+                "token": "Z",
+                "bytes": [
+                  90
+                ],
+                "logprob": -12.347492218017578
+              },
+              {
+                "token": "e",
+                "bytes": [
+                  101
+                ],
+                "logprob": -12.472492218017578
+              },
+              {
+                "token": "H",
+                "bytes": [
+                  72
+                ],
+                "logprob": -12.534992218017578
+              },
+              {
+                "token": "P",
+                "bytes": [
+                  80
+                ],
+                "logprob": -12.784992218017578
+              },
+              {
+                "token": "V",
+                "bytes": [
+                  86
+                ],
+                "logprob": -12.847492218017578
+              },
+              {
+                "token": "###",
+                "bytes": [
+                  35,
+                  35,
+                  35
+                ],
+                "logprob": -12.909992218017578
+              },
+              {
+                "token": "Answer",
+                "bytes": [
+                  65,
+                  110,
+                  115,
+                  119,
+                  101,
+                  114
+                ],
+                "logprob": -12.972492218017578
+              }
+            ]
+          }
+        ],
+        "refusal": null
+      },
+      "finish_reason": "length",
+      "native_finish_reason": "length",
+      "message": {
+        "role": "assistant",
+        "content": "E",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 6307,
+    "completion_tokens": 1,
+    "total_tokens": 6308,
+    "cost": 0.00063165,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00063165,
+      "upstream_inference_prompt_cost": 0.0006307,
+      "upstream_inference_completions_cost": 9.5e-07
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
+
+==============================================================================
+QUERY      : /home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10065.sql
+MODEL      : qwen/qwen3.6-35b-a3b
+CANDIDATES : 5 unique plans
+ORDER      : letter index -> candidate index = [1, 0, 4, 2, 3]
+==============================================================================
+
+--- SYSTEM MESSAGE ---
+You are an expert PostgreSQL query optimizer. You reason about join orders, access paths and selectivity using table statistics. You answer with a single letter and nothing else.
+
+--- USER MESSAGE (exactly what was sent) ---
+**Query**
+SELECT MIN(cn.name) AS movie_company,
+       MIN(mi_idx.info) AS rating,
+       MIN(t.title) AS complete_euro_dark_movie
+FROM complete_cast AS cc,
+     comp_cast_type AS cct1,
+     comp_cast_type AS cct2,
+     company_name AS cn,
+     company_type AS ct,
+     info_type AS it1,
+     info_type AS it2,
+     keyword AS k,
+     kind_type AS kt,
+     movie_companies AS mc,
+     movie_info AS mi,
+     movie_info_idx AS mi_idx,
+     movie_keyword AS mk,
+     title AS t
+WHERE cct1.kind = 'crew'
+  AND cct2.kind != 'complete+verified'
+  AND cn.country_code != '[us]'
+  AND it1.info = 'countries'
+  AND it2.info = 'rating'
+  AND k.keyword IN ('murder',
+                    'murder-in-title',
+                    'blood',
+                    'violence')
+  AND kt.kind IN ('movie',
+                  'episode')
+  AND mc.note NOT LIKE '%(USA)%'
+  AND mc.note LIKE '%(200%)%'
+  AND mi_idx.info < '8.5'
+  AND kt.id = t.kind_id
+  AND t.id = mi.movie_id
+  AND t.id = mk.movie_id
+  AND t.id = mi_idx.movie_id
+  AND t.id = mc.movie_id
+  AND t.id = cc.movie_id
+  AND mk.movie_id = mi.movie_id
+  AND mk.movie_id = mi_idx.movie_id
+  AND mk.movie_id = mc.movie_id
+  AND mk.movie_id = cc.movie_id
+  AND mi.movie_id = mi_idx.movie_id
+  AND mi.movie_id = mc.movie_id
+  AND mi.movie_id = cc.movie_id
+  AND mc.movie_id = mi_idx.movie_id
+  AND mc.movie_id = cc.movie_id
+  AND mi_idx.movie_id = cc.movie_id
+  AND k.id = mk.keyword_id
+  AND it1.id = mi.info_type_id
+  AND it2.id = mi_idx.info_type_id
+  AND ct.id = mc.company_type_id
+  AND cn.id = mc.company_id
+  AND cct1.id = cc.subject_id
+  AND cct2.id = cc.status_id
+  AND t.production_year > 2000
+AND mi.info IN ('Norway',
+'USA',
+'Denmark',
+'Denish',
+'Bulgaria',
+'America',
+'Norwegian',
+'Swedish',
+'German',
+'Germany')
+**Statistics**
+Table Size:
+alias : estimated rows reaching this table (largest id in parentheses)
+cc : 2 (135086)
+cct1 : 3 (4)
+cct2 : 3 (4)
+cn : 1 (234997)
+ct : 4 (4)
+it1 : 1 (113)
+it2 : 1 (113)
+k : 4 (134170)
+kt : 2 (7)
+mc : 1 (2609129)
+mi : 2 (14835720)
+mi_idx : 3 (1380035)
+mk : 304 (4523930)
+t : 1 (2528312)
+Main Values:
+{value, rows} = a frequent value and the number of rows holding it
+complete_cast.subject_id : {1, 86469}, {2, 48617}
+complete_cast.status_id : {3, 110915}, {4, 24171}
+company_name.name : {'Sony Pictures Releasing', 63}, {'Nickelodeon', 55}, {'United International Pic...', 47}
+company_name.country_code : {'[us]', 84693}, {'[gb]', 16277}, {'[fr]', 10489}
+movie_companies.note : {'(in association with)', 19742}, {'(co-production)', 17655}, {'(2004) (USA) (DVD)', 9306}
+movie_companies.company_type_id : {2, 1347528}, {1, 1261601}
+movie_companies.company_id : {6, 61141}, {19, 47486}, {160, 39311}
+movie_info.movie_id : {1827186, 4448}, {2310522, 4448}, {1680673, 2965}
+movie_info.info_type_id : {16, 3076027}, {3, 1535048}, {7, 1370473}
+movie_info.info : {'Color', 943961}, {'English', 774938}, {'USA', 572307}
+movie_info_idx.info : {7, 27647}, {6, 27279}, {5, 26221}
+movie_info_idx.info_type_id : {100, 463968}, {99, 460104}, {101, 455642}
+movie_keyword.movie_id : {2161720, 1206}, {1834483, 1056}, {2471561, 1056}
+movie_keyword.keyword_id : {335, 74343}, {16264, 56398}, {117, 43128}
+title.title : {'(#1.1)', 13992}, {'(#1.2)', 10367}, {'(#1.3)', 9693}
+title.kind_id : {7, 1539022}, {1, 662001}, {4, 123314}
+title.production_year : {2011, 167228}, {2012, 163688}, {2010, 140762}
+NDV:
+distinct values in the column (equals row count if every value is unique)
+complete_cast.movie_id : 86294
+complete_cast.subject_id : 2
+complete_cast.status_id : 2
+complete_cast.id : 135086
+comp_cast_type.kind : 4
+comp_cast_type.id : 4
+comp_cast_type.kind : 4
+comp_cast_type.id : 4
+company_name.name : 209151
+company_name.country_code : 162
+company_name.id : 234997
+company_type.id : 4
+info_type.info : 113
+info_type.id : 113
+info_type.info : 113
+info_type.id : 113
+keyword.keyword : 134170
+keyword.id : 134170
+kind_type.kind : 7
+kind_type.id : 7
+movie_companies.note : 5900
+movie_companies.movie_id : 507673
+movie_companies.company_type_id : 2
+movie_companies.company_id : 20085
+movie_companies.id : 2609129
+movie_info.movie_id : 342801
+movie_info.info_type_id : 69
+movie_info.info : 20782
+movie_info.id : 14826611
+movie_info_idx.info : 11153
+movie_info_idx.movie_id : 465713
+movie_info_idx.info_type_id : 5
+movie_info_idx.id : 1380035
+movie_keyword.movie_id : 98469
+movie_keyword.keyword_id : 14832
+movie_keyword.id : 4523930
+title.title : 141166
+title.kind_id : 6
+title.id : 2528652
+title.production_year : 123
+Min Max:
+{min, max} = smallest and largest value in the column
+complete_cast.movie_id : {285, 2528312}
+complete_cast.subject_id : {1, 2}
+complete_cast.status_id : {3, 4}
+complete_cast.id : {1, 135086}
+comp_cast_type.id : {1, 4}
+comp_cast_type.id : {1, 4}
+company_name.id : {1, 234997}
+company_type.id : {1, 4}
+info_type.id : {1, 113}
+info_type.id : {1, 113}
+keyword.id : {1, 134170}
+kind_type.id : {1, 7}
+movie_companies.movie_id : {2, 2525745}
+movie_companies.company_type_id : {1, 2}
+movie_companies.company_id : {1, 234997}
+movie_companies.id : {1, 2609129}
+movie_info.movie_id : {1, 2526430}
+movie_info.info_type_id : {1, 110}
+movie_info.id : {1, 14835720}
+movie_info_idx.movie_id : {2, 2525793}
+movie_info_idx.info_type_id : {99, 113}
+movie_info_idx.id : {1, 1380035}
+movie_keyword.movie_id : {2, 2525971}
+movie_keyword.keyword_id : {1, 134170}
+movie_keyword.id : {1, 4523930}
+title.kind_id : {1, 7}
+title.id : {1, 2528312}
+title.production_year : {1880, 2019}
+Histograms:
+[] = 12 evenly spaced values, each marking about 8% more rows
+complete_cast.movie_id : [289, 358866, 591792, 948981, 1287438, 1560603, 1777545, 1944174, 2114036, 2287842, 2406997, 2528306]
+complete_cast.id : [1, 11996, 24181, 36175, 48411, 60824, 74050, 85924, 98379, 110820, 122755, 135082]
+comp_cast_type.id : [1, 2, 3, 4]
+comp_cast_type.id : [1, 2, 3, 4]
+company_name.id : [17, 20951, 42664, 63198, 83986, 105833, 129645, 150332, 171074, 192653, 214076, 234995]
+company_type.id : [1, 2, 3, 4]
+info_type.id : [1, 11, 21, 31, 41, 51, 62, 72, 82, 92, 102, 113]
+info_type.id : [1, 11, 21, 31, 41, 51, 62, 72, 82, 92, 102, 113]
+keyword.id : [3, 11954, 24202, 36111, 48239, 60037, 73867, 86266, 98417, 110449, 122381, 134167]
+kind_type.id : [1, 2, 3, 4, 5, 6, 7]
+movie_companies.movie_id : [58, 462973, 889333, 1304974, 1646465, 1776131, 1913907, 2039898, 2159765, 2291641, 2405494, 2525745]
+movie_companies.company_id : [1, 655, 2057, 5662, 11240, 13860, 21309, 43863, 72680, 88055, 121433, 234815]
+movie_companies.id : [142, 237166, 463354, 706917, 941358, 1187509, 1446782, 1683899, 1920684, 2146700, 2376209, 2609097]
+movie_info.movie_id : [27, 498310, 952340, 1389975, 1689575, 1810659, 1946674, 2075382, 2200233, 2319914, 2413528, 2526182]
+movie_info.info_type_id : [35, 42, 46, 51, 62, 65, 70, 76, 80, 86, 91, 109]
+movie_info.id : [150, 1307019, 2631529, 4043341, 5364183, 6711844, 8217347, 9525074, 10840697, 12234362, 13523358, 14835492]
+movie_info_idx.movie_id : [50, 384407, 769125, 1143655, 1487178, 1725437, 1868274, 2004258, 2136130, 2268912, 2396620, 2525670]
+movie_info_idx.id : [10, 122868, 244446, 367622, 497394, 623800, 759801, 884719, 1010211, 1134456, 1258780, 1380035]
+movie_keyword.movie_id : [596, 811950, 1581019, 1733754, 1834050, 1938461, 2061893, 2171271, 2271203, 2355052, 2425025, 2525580]
+movie_keyword.keyword_id : [4, 712, 1556, 2489, 3664, 5589, 7980, 11815, 17762, 27597, 49532, 134140]
+movie_keyword.id : [291, 401465, 812283, 1217448, 1635767, 2043184, 2503581, 2914432, 3320599, 3722134, 4123771, 4523905]
+title.id : [25, 231488, 457693, 685648, 920455, 1143914, 1398089, 1624636, 1850725, 2075109, 2299967, 2528293]
+title.production_year : [1894, 1899, 1901, 1902, 1906, 1924, 1935, 1941, 1942, 1945, 2014, 2016]
+**Candidates**
+B (arms 3): SeqScan(cct1) SeqScan(it1) SeqScan(it2) SeqScan(k) BitmapScan(mk) IndexScan(mi_idx) IndexScan(mc) IndexScan(cn) SeqScan(ct) IndexScan(mi) IndexScan(t) SeqScan(kt) IndexScan(cc) SeqScan(cct2) NestLoop(k mk) NestLoop(k mk mi_idx) NestLoop(it2 k mk mi_idx) NestLoop(it2 k mk mi_idx mc) NestLoop(it2 k mk mi_idx mc cn) NestLoop(it2 k mk mi_idx mc cn ct) NestLoop(it2 k mk mi_idx mc cn ct mi) NestLoop(it1 it2 k mk mi_idx mc cn ct mi) NestLoop(it1 it2 k mk mi_idx mc cn ct mi t) NestLoop(it1 it2 k mk mi_idx mc cn ct mi t kt) NestLoop(it1 it2 k mk mi_idx mc cn ct mi t kt cc) NestLoop(cct1 it1 it2 k mk mi_idx mc cn ct mi t kt cc) NestLoop(cct1 it1 it2 k mk mi_idx mc cn ct mi t kt cc cct2) Leading(((cct1 ((((it1 (((((it2 ((k mk) mi_idx)) mc) cn) ct) mi)) t) kt) cc)) cct2))
+A (arms 1): SeqScan(it1) SeqScan(cct1) SeqScan(it2) SeqScan(k) BitmapScan(mk) BitmapScan(mi_idx) BitmapScan(mc) SeqScan(ct) BitmapScan(cn) BitmapScan(cc) SeqScan(cct2) BitmapScan(t) SeqScan(kt) BitmapScan(mi) NestLoop(k mk) NestLoop(k mk mi_idx) NestLoop(it2 k mk mi_idx) NestLoop(it2 k mk mi_idx mc) NestLoop(it2 k mk mi_idx mc ct) NestLoop(it2 k mk mi_idx mc ct cn) NestLoop(it2 k mk mi_idx mc ct cn cc) NestLoop(cct1 it2 k mk mi_idx mc ct cn cc) NestLoop(cct1 it2 k mk mi_idx mc ct cn cc cct2) NestLoop(cct1 it2 k mk mi_idx mc ct cn cc cct2 t) NestLoop(cct1 it2 k mk mi_idx mc ct cn cc cct2 t kt) NestLoop(cct1 it2 k mk mi_idx mc ct cn cc cct2 t kt mi) NestLoop(it1 cct1 it2 k mk mi_idx mc ct cn cc cct2 t kt mi) Leading((it1 (((((cct1 (((((it2 ((k mk) mi_idx)) mc) ct) cn) cc)) cct2) t) kt) mi)))
+E (arms 4): SeqScan(it2) SeqScan(it1) SeqScan(cct1) SeqScan(k) BitmapScan(mk) IndexScan(t) SeqScan(kt) IndexScan(cc) SeqScan(cct2) IndexScan(mi) IndexScan(mc) SeqScan(ct) IndexScan(cn) IndexScan(mi_idx) NestLoop(k mk) NestLoop(k mk t) NestLoop(k mk t kt) NestLoop(k mk t kt cc) NestLoop(cct1 k mk t kt cc) NestLoop(cct1 k mk t kt cc cct2) NestLoop(cct1 k mk t kt cc cct2 mi) NestLoop(it1 cct1 k mk t kt cc cct2 mi) NestLoop(it1 cct1 k mk t kt cc cct2 mi mc) NestLoop(it1 cct1 k mk t kt cc cct2 mi mc ct) NestLoop(it1 cct1 k mk t kt cc cct2 mi mc ct cn) NestLoop(it1 cct1 k mk t kt cc cct2 mi mc ct cn mi_idx) NestLoop(it2 it1 cct1 k mk t kt cc cct2 mi mc ct cn mi_idx) Leading((it2 (((((it1 (((cct1 ((((k mk) t) kt) cc)) cct2) mi)) mc) ct) cn) mi_idx)))
+C (arms 0): SeqScan(mi_idx) SeqScan(cn) SeqScan(mc) SeqScan(mi) SeqScan(t) SeqScan(mk) SeqScan(k) SeqScan(kt) SeqScan(it1) SeqScan(cc) SeqScan(cct2) SeqScan(cct1) SeqScan(ct) SeqScan(it2) HashJoin(mk k) HashJoin(t mk k) HashJoin(t mk k kt) HashJoin(mi t mk k kt) HashJoin(mi t mk k kt it1) HashJoin(mi t mk k kt it1 cc) HashJoin(mi t mk k kt it1 cc cct2) HashJoin(mi t mk k kt it1 cc cct2 cct1) HashJoin(mc mi t mk k kt it1 cc cct2 cct1) HashJoin(cn mc mi t mk k kt it1 cc cct2 cct1) HashJoin(cn mc mi t mk k kt it1 cc cct2 cct1 ct) HashJoin(mi_idx cn mc mi t mk k kt it1 cc cct2 cct1 ct) HashJoin(mi_idx cn mc mi t mk k kt it1 cc cct2 cct1 ct it2) Leading(((mi_idx ((cn (mc (((((mi ((t (mk k)) kt)) it1) cc) cct2) cct1))) ct)) it2))
+D (arms 2): SeqScan(t) SeqScan(cn) SeqScan(mi_idx) SeqScan(mi) SeqScan(mc) SeqScan(mk) SeqScan(k) SeqScan(it1) SeqScan(it2) SeqScan(ct) SeqScan(cc) SeqScan(cct1) SeqScan(cct2) SeqScan(kt) HashJoin(mk k) HashJoin(mc mk k) HashJoin(mi mc mk k) HashJoin(mi mc mk k it1) HashJoin(mi_idx mi mc mk k it1) HashJoin(mi_idx mi mc mk k it1 it2) HashJoin(mi_idx mi mc mk k it1 it2 ct) HashJoin(cn mi_idx mi mc mk k it1 it2 ct) HashJoin(cn mi_idx mi mc mk k it1 it2 ct cc) HashJoin(cn mi_idx mi mc mk k it1 it2 ct cc cct1) HashJoin(cn mi_idx mi mc mk k it1 it2 ct cc cct1 cct2) HashJoin(t cn mi_idx mi mc mk k it1 it2 ct cc cct1 cct2) HashJoin(t cn mi_idx mi mc mk k it1 it2 ct cc cct1 cct2 kt) Leading(((t ((((cn (((mi_idx ((mi (mc (mk k))) it1)) it2) ct)) cc) cct1) cct2)) kt))
+
+Which one of the candidate plans above will execute FASTEST on this database? Consider the access paths, the join order, and how selective the filters are. Answer with exactly one letter (A, B, C, D, E) and nothing else.
+
+--- RESPONSE ---
+text           : 'B'
+logprobs used  : True
+letter probs   : {'B': 0.6764710823657277, 'A': 0.13320504611619008, 'D': 0.09155040007651448, 'E': 0.05552812455536385, 'C': 0.04324534688620387}
+residual mass  : 0.0
+error          : None
+
+--- RAW RESPONSE (exactly what came back) ---
+{
+  "id": "gen-1792666508-iazLWuvkU5MyIPNQQVGa",
+  "object": "chat.completion",
+  "created": 1792666508,
+  "model": "qwen/qwen3.6-35b-a3b",
+  "provider": "Parasail",
+  "system_fingerprint": null,
+  "service_tier": null,
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": {
+        "content": [
+          {
+            "token": "B",
+            "bytes": [
+              66
+            ],
+            "logprob": -0.39120978116989136,
+            "top_logprobs": [
+              {
+                "token": "B",
+                "bytes": [
+                  66
+                ],
+                "logprob": -0.39120978116989136
+              },
+              {
+                "token": "A",
+                "bytes": [
+                  65
+                ],
+                "logprob": -2.016209840774536
+              },
+              {
+                "token": "D",
+                "bytes": [
+                  68
+                ],
+                "logprob": -2.391209840774536
+              },
+              {
+                "token": "E",
+                "bytes": [
+                  69
+                ],
+                "logprob": -2.891209840774536
+              },
+              {
+                "token": "C",
+                "bytes": [
+                  67
+                ],
+                "logprob": -3.141209840774536
+              },
+              {
+                "token": "<think>",
+                "bytes": [
+                  60,
+                  116,
+                  104,
+                  105,
+                  110,
+                  107,
+                  62
+                ],
+                "logprob": -9.453709602355957
+              },
+              {
+                "token": "The",
+                "bytes": [
+                  84,
+                  104,
+                  101
+                ],
+                "logprob": -9.703709602355957
+              },
+              {
+                "token": "K",
+                "bytes": [
+                  75
+                ],
+                "logprob": -10.891209602355957
+              },
+              {
+                "token": "<|im_end|>",
+                "bytes": [
+                  60,
+                  124,
+                  105,
+                  109,
+                  95,
+                  101,
+                  110,
+                  100,
+                  124,
+                  62
+                ],
+                "logprob": -11.016209602355957
+              },
+              {
+                "token": "I",
+                "bytes": [
+                  73
+                ],
+                "logprob": -11.266209602355957
+              },
+              {
+                "token": "F",
+                "bytes": [
+                  70
+                ],
+                "logprob": -11.391209602355957
+              },
+              {
+                "token": "G",
+                "bytes": [
+                  71
+                ],
+                "logprob": -11.891209602355957
+              },
+              {
+                "token": "H",
+                "bytes": [
+                  72
+                ],
+                "logprob": -12.016209602355957
+              },
+              {
+                "token": "Based",
+                "bytes": [
+                  66,
+                  97,
+                  115,
+                  101,
+                  100
+                ],
+                "logprob": -12.141209602355957
+              },
+              {
+                "token": "e",
+                "bytes": [
+                  101
+                ],
+                "logprob": -12.203709602355957
+              },
+              {
+                "token": "b",
+                "bytes": [
+                  98
+                ],
+                "logprob": -12.328709602355957
+              },
+              {
+                "token": "S",
+                "bytes": [
+                  83
+                ],
+                "logprob": -12.391209602355957
+              },
+              {
+                "token": "Z",
+                "bytes": [
+                  90
+                ],
+                "logprob": -12.453709602355957
+              },
+              {
+                "token": "Answer",
+                "bytes": [
+                  65,
+                  110,
+                  115,
+                  119,
+                  101,
+                  114
+                ],
+                "logprob": -12.578709602355957
+              },
+              {
+                "token": "d",
+                "bytes": [
+                  100
+                ],
+                "logprob": -12.578709602355957
+              }
+            ]
+          }
+        ],
+        "refusal": null
+      },
+      "finish_reason": "length",
+      "native_finish_reason": "length",
+      "message": {
+        "role": "assistant",
+        "content": "B",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 5777,
+    "completion_tokens": 1,
+    "total_tokens": 5778,
+    "cost": 0.00057865,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.00057865,
+      "upstream_inference_prompt_cost": 0.0005777,
+      "upstream_inference_completions_cost": 9.5e-07
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
