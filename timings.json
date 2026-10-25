@@ -1,0 +1,726 @@
+{
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/08268.sql": {
+    "unique_arm_plans": [
+      "SeqScan(an) SeqScan(n) SeqScan(ci) SeqScan(cn) SeqScan(mc) SeqScan(t) SeqScan(mk) SeqScan(k) HashJoin(mk k) HashJoin(t mk k) HashJoin(mc t mk k) HashJoin(cn mc t mk k) HashJoin(ci cn mc t mk k) HashJoin(n ci cn mc t mk k) HashJoin(an n ci cn mc t mk k) Leading((an (n (ci (cn (mc (t (mk k))))))))",
+      "SeqScan(k) BitmapScan(mk) BitmapScan(t) BitmapScan(mc) BitmapScan(cn) BitmapScan(ci) BitmapScan(n) BitmapScan(an) NestLoop(k mk) NestLoop(k mk t) NestLoop(k mk t mc) NestLoop(k mk t mc cn) NestLoop(k mk t mc cn ci) NestLoop(k mk t mc cn ci n) NestLoop(k mk t mc cn ci n an) Leading((((((((k mk) t) mc) cn) ci) n) an))",
+      "SeqScan(k) BitmapScan(mk) IndexScan(t) IndexScan(mc) IndexScan(cn) IndexScan(ci) IndexOnlyScan(n) IndexScan(an) NestLoop(k mk) NestLoop(k mk t) NestLoop(k mk t mc) NestLoop(k mk t mc cn) NestLoop(k mk t mc cn ci) NestLoop(k mk t mc cn ci n) NestLoop(k mk t mc cn ci n an) Leading((((((((k mk) t) mc) cn) ci) n) an))"
+    ],
+    "arm_to_plan": {
+      "0": 0,
+      "2": 0,
+      "1": 1,
+      "3": 2,
+      "4": 2
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          2385.405,
+          2272.785,
+          2276.836,
+          2248.996,
+          2270.069
+        ],
+        "median_ms": 2272.785,
+        "min_ms": 2248.996,
+        "spread_ms": 136.409,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          918.459,
+          899.956,
+          936.794,
+          927.821,
+          902.455
+        ],
+        "median_ms": 918.459,
+        "min_ms": 899.956,
+        "spread_ms": 36.838,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          727.414,
+          718.592,
+          726.614,
+          720.067,
+          747.395
+        ],
+        "median_ms": 726.614,
+        "min_ms": 718.592,
+        "spread_ms": 28.803,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 3,
+    "best_over_second": 1.0
+  },
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16432.sql": {
+    "unique_arm_plans": [
+      "SeqScan(mc) SeqScan(ct) BitmapScan(t) BitmapScan(mi) SeqScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) HashJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))",
+      "SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) SeqScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) HashJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))",
+      "SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) SeqScan(it) MergeJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) MergeJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))",
+      "SeqScan(mi) SeqScan(t) SeqScan(mc) SeqScan(ct) SeqScan(it) HashJoin(mc ct) HashJoin(t mc ct) HashJoin(mi t mc ct) HashJoin(mi t mc ct it) Leading(((mi (t (mc ct))) it))"
+    ],
+    "arm_to_plan": {
+      "1": 0,
+      "3": 1,
+      "4": 2,
+      "0": 3,
+      "2": 3
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          74.481,
+          74.259,
+          78.715,
+          73.558,
+          75.736
+        ],
+        "median_ms": 74.481,
+        "min_ms": 73.558,
+        "spread_ms": 5.157,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          73.705,
+          73.736,
+          75.75,
+          74.033,
+          75.351
+        ],
+        "median_ms": 74.033,
+        "min_ms": 73.705,
+        "spread_ms": 2.045,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          75.305,
+          75.74,
+          76.318,
+          75.064,
+          77.425
+        ],
+        "median_ms": 75.74,
+        "min_ms": 75.064,
+        "spread_ms": 2.361,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          85.125,
+          92.829,
+          87.532,
+          87.779,
+          87.492
+        ],
+        "median_ms": 87.532,
+        "min_ms": 85.125,
+        "spread_ms": 7.704,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 3,
+    "best_over_second": 0.994
+  },
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16425.sql": {
+    "unique_arm_plans": [
+      "SeqScan(mc) SeqScan(ct) BitmapScan(t) BitmapScan(mi) SeqScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) HashJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))",
+      "SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) SeqScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) HashJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))",
+      "SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) SeqScan(it) MergeJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) MergeJoin(mc ct t mi it) Leading(((((mc ct) t) mi) it))",
+      "SeqScan(mi) SeqScan(t) SeqScan(mc) SeqScan(ct) SeqScan(it) HashJoin(mc ct) HashJoin(t mc ct) HashJoin(mi t mc ct) HashJoin(mi t mc ct it) Leading(((mi (t (mc ct))) it))"
+    ],
+    "arm_to_plan": {
+      "1": 0,
+      "3": 1,
+      "4": 2,
+      "0": 3,
+      "2": 3
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          75.299,
+          76.866,
+          76.304,
+          76.298,
+          76.658
+        ],
+        "median_ms": 76.304,
+        "min_ms": 75.299,
+        "spread_ms": 1.567,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          74.851,
+          75.245,
+          76.636,
+          76.778,
+          75.811
+        ],
+        "median_ms": 75.811,
+        "min_ms": 74.851,
+        "spread_ms": 1.927,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          76.4,
+          78.388,
+          77.326,
+          76.848,
+          76.863
+        ],
+        "median_ms": 76.863,
+        "min_ms": 76.4,
+        "spread_ms": 1.988,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          87.885,
+          89.804,
+          88.464,
+          89.076,
+          88.538
+        ],
+        "median_ms": 88.538,
+        "min_ms": 87.885,
+        "spread_ms": 1.919,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 3,
+    "best_over_second": 0.9935
+  },
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/13509.sql": {
+    "unique_arm_plans": [
+      "IndexScan(it2) SeqScan(it1) IndexScan(mi_idx1) SeqScan(lt) BitmapScan(ml) IndexScan(mc1) IndexScan(cn1) IndexScan(t2) IndexScan(kt2) IndexScan(mc2) IndexScan(cn2) IndexScan(t1) IndexScan(kt1) IndexScan(mi_idx2) NestLoop(lt ml) MergeJoin(mi_idx1 lt ml) NestLoop(it1 mi_idx1 lt ml) NestLoop(it1 mi_idx1 lt ml mc1) NestLoop(it1 mi_idx1 lt ml mc1 cn1) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2 cn2) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2 cn2 t1) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2 cn2 t1 kt1) NestLoop(it2 it1 mi_idx1 lt ml mc1 cn1 t2 kt2 mc2 cn2 t1 kt1 mi_idx2) Leading(((((((((it2 (((it1 (mi_idx1 (lt ml))) mc1) cn1)) t2) kt2) mc2) cn2) t1) kt1) mi_idx2))",
+      "SeqScan(cn2) IndexScan(t1) SeqScan(t2) SeqScan(mc2) IndexScan(mi_idx1) IndexScan(ml) IndexScan(mc1) SeqScan(cn1) SeqScan(mi_idx2) SeqScan(it2) SeqScan(kt2) SeqScan(it1) SeqScan(lt) SeqScan(kt1) MergeJoin(mi_idx1 ml) MergeJoin(mi_idx1 ml mc1) HashJoin(mi_idx1 ml mc1 cn1) HashJoin(mi_idx1 ml mc1 cn1 mi_idx2) HashJoin(mi_idx1 ml mc1 cn1 mi_idx2 it2) HashJoin(mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2) HashJoin(t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2) HashJoin(t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2) HashJoin(t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1) MergeJoin(t1 t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1) HashJoin(t1 t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1 lt) HashJoin(cn2 t1 t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1 lt) HashJoin(cn2 t1 t2 mc2 mi_idx1 ml mc1 cn1 mi_idx2 it2 kt2 it1 lt kt1) Leading(((cn2 ((t1 (((t2 (mc2 (((((mi_idx1 ml) mc1) cn1) mi_idx2) it2))) kt2) it1)) lt)) kt1))",
+      "SeqScan(cn2) SeqScan(mc2) SeqScan(cn1) SeqScan(mi_idx1) SeqScan(mc1) SeqScan(t1) SeqScan(t2) SeqScan(mi_idx2) SeqScan(it2) SeqScan(kt2) SeqScan(ml) SeqScan(lt) SeqScan(kt1) SeqScan(it1) HashJoin(mi_idx2 it2) HashJoin(t2 mi_idx2 it2) HashJoin(t2 mi_idx2 it2 kt2) HashJoin(t2 mi_idx2 it2 kt2 ml) HashJoin(t1 t2 mi_idx2 it2 kt2 ml) HashJoin(t1 t2 mi_idx2 it2 kt2 ml lt) HashJoin(mc1 t1 t2 mi_idx2 it2 kt2 ml lt) HashJoin(mi_idx1 mc1 t1 t2 mi_idx2 it2 kt2 ml lt) HashJoin(mi_idx1 mc1 t1 t2 mi_idx2 it2 kt2 ml lt kt1) HashJoin(cn1 mi_idx1 mc1 t1 t2 mi_idx2 it2 kt2 ml lt kt1) HashJoin(mc2 cn1 mi_idx1 mc1 t1 t2 mi_idx2 it2 kt2 ml lt kt1) HashJoin(mc2 cn1 mi_idx1 mc1 t1 t2 mi_idx2 it2 kt2 ml lt kt1 it1) HashJoin(cn2 mc2 cn1 mi_idx1 mc1 t1 t2 mi_idx2 it2 kt2 ml lt kt1 it1) Leading((cn2 ((mc2 (cn1 ((mi_idx1 (mc1 ((t1 (((t2 (mi_idx2 it2)) kt2) ml)) lt))) kt1))) it1)))",
+      "SeqScan(kt1) SeqScan(kt2) SeqScan(it2) SeqScan(ml) SeqScan(lt) IndexScan(mi_idx1) SeqScan(it1) IndexScan(mc1) IndexScan(cn1) IndexScan(mi_idx2) IndexScan(t2) IndexScan(t1) IndexScan(mc2) IndexScan(cn2) NestLoop(kt1 kt2) HashJoin(ml lt) NestLoop(ml lt mi_idx1) HashJoin(ml lt mi_idx1 it1) NestLoop(it2 ml lt mi_idx1 it1) NestLoop(it2 ml lt mi_idx1 it1 mc1) NestLoop(it2 ml lt mi_idx1 it1 mc1 cn1) NestLoop(it2 ml lt mi_idx1 it1 mc1 cn1 mi_idx2) NestLoop(it2 ml lt mi_idx1 it1 mc1 cn1 mi_idx2 t2) NestLoop(kt1 kt2 it2 ml lt mi_idx1 it1 mc1 cn1 mi_idx2 t2) NestLoop(kt1 kt2 it2 ml lt mi_idx1 it1 mc1 cn1 mi_idx2 t2 t1) NestLoop(kt1 kt2 it2 ml lt mi_idx1 it1 mc1 cn1 mi_idx2 t2 t1 mc2) NestLoop(kt1 kt2 it2 ml lt mi_idx1 it1 mc1 cn1 mi_idx2 t2 t1 mc2 cn2) Leading((((((kt1 kt2) (((((it2 (((ml lt) mi_idx1) it1)) mc1) cn1) mi_idx2) t2)) t1) mc2) cn2))",
+      "SeqScan(mi_idx2) SeqScan(it1) SeqScan(it2) SeqScan(ml) SeqScan(lt) BitmapScan(t2) SeqScan(kt2) BitmapScan(t1) SeqScan(kt1) BitmapScan(mi_idx1) BitmapScan(mc1) BitmapScan(cn1) BitmapScan(mc2) BitmapScan(cn2) NestLoop(it1 it2) HashJoin(mi_idx2 it1 it2) HashJoin(mi_idx2 it1 it2 ml) HashJoin(mi_idx2 it1 it2 ml lt) NestLoop(mi_idx2 it1 it2 ml lt t2) HashJoin(mi_idx2 it1 it2 ml lt t2 kt2) NestLoop(mi_idx2 it1 it2 ml lt t2 kt2 t1) HashJoin(mi_idx2 it1 it2 ml lt t2 kt2 t1 kt1) NestLoop(mi_idx2 it1 it2 ml lt t2 kt2 t1 kt1 mi_idx1) NestLoop(mi_idx2 it1 it2 ml lt t2 kt2 t1 kt1 mi_idx1 mc1) NestLoop(mi_idx2 it1 it2 ml lt t2 kt2 t1 kt1 mi_idx1 mc1 cn1) NestLoop(mi_idx2 it1 it2 ml lt t2 kt2 t1 kt1 mi_idx1 mc1 cn1 mc2) NestLoop(mi_idx2 it1 it2 ml lt t2 kt2 t1 kt1 mi_idx1 mc1 cn1 mc2 cn2) Leading(((((((((((((mi_idx2 (it1 it2)) ml) lt) t2) kt2) t1) kt1) mi_idx1) mc1) cn1) mc2) cn2))"
+    ],
+    "arm_to_plan": {
+      "4": 0,
+      "0": 1,
+      "2": 2,
+      "3": 3,
+      "1": 4
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          20.472,
+          21.31,
+          21.205,
+          21.811,
+          23.287
+        ],
+        "median_ms": 21.31,
+        "min_ms": 20.472,
+        "spread_ms": 2.815,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          652.908,
+          644.826,
+          670.945,
+          670.618,
+          663.023
+        ],
+        "median_ms": 663.023,
+        "min_ms": 644.826,
+        "spread_ms": 26.119,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          876.581,
+          837.864,
+          875.553,
+          844.693,
+          850.639
+        ],
+        "median_ms": 850.639,
+        "min_ms": 837.864,
+        "spread_ms": 38.717,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          19.771,
+          18.77,
+          18.799,
+          18.9,
+          17.641
+        ],
+        "median_ms": 18.799,
+        "min_ms": 17.641,
+        "spread_ms": 2.13,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          158.492,
+          161.821,
+          162.577,
+          168.976,
+          167.643
+        ],
+        "median_ms": 162.577,
+        "min_ms": 158.492,
+        "spread_ms": 10.484,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 3,
+    "best_over_second": 0.8822
+  },
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/10065.sql": {
+    "unique_arm_plans": [
+      "SeqScan(cct1) SeqScan(it1) SeqScan(it2) SeqScan(k) BitmapScan(mk) BitmapScan(mi_idx) BitmapScan(mi) BitmapScan(t) SeqScan(kt) BitmapScan(cc) BitmapScan(mc) BitmapScan(cn) SeqScan(cct2) SeqScan(ct) NestLoop(k mk) NestLoop(k mk mi_idx) NestLoop(it2 k mk mi_idx) NestLoop(it2 k mk mi_idx mi) NestLoop(it1 it2 k mk mi_idx mi) NestLoop(it1 it2 k mk mi_idx mi t) NestLoop(it1 it2 k mk mi_idx mi t kt) NestLoop(it1 it2 k mk mi_idx mi t kt cc) NestLoop(cct1 it1 it2 k mk mi_idx mi t kt cc) NestLoop(cct1 it1 it2 k mk mi_idx mi t kt cc mc) NestLoop(cct1 it1 it2 k mk mi_idx mi t kt cc mc cn) NestLoop(cct1 it1 it2 k mk mi_idx mi t kt cc mc cn cct2) NestLoop(cct1 it1 it2 k mk mi_idx mi t kt cc mc cn cct2 ct) Leading((((((cct1 ((((it1 ((it2 ((k mk) mi_idx)) mi)) t) kt) cc)) mc) cn) cct2) ct))",
+      "SeqScan(cct1) SeqScan(it1) SeqScan(kt) SeqScan(it2) SeqScan(k) BitmapScan(mk) IndexScan(mi_idx) IndexScan(t) IndexScan(mc) IndexScan(cn) SeqScan(ct) IndexScan(mi) IndexScan(cc) SeqScan(cct2) NestLoop(k mk) NestLoop(k mk mi_idx) NestLoop(it2 k mk mi_idx) NestLoop(it2 k mk mi_idx t) NestLoop(kt it2 k mk mi_idx t) NestLoop(kt it2 k mk mi_idx t mc) NestLoop(kt it2 k mk mi_idx t mc cn) NestLoop(kt it2 k mk mi_idx t mc cn ct) NestLoop(kt it2 k mk mi_idx t mc cn ct mi) NestLoop(it1 kt it2 k mk mi_idx t mc cn ct mi) NestLoop(it1 kt it2 k mk mi_idx t mc cn ct mi cc) NestLoop(cct1 it1 kt it2 k mk mi_idx t mc cn ct mi cc) NestLoop(cct1 it1 kt it2 k mk mi_idx t mc cn ct mi cc cct2) Leading(((cct1 ((it1 (((((kt ((it2 ((k mk) mi_idx)) t)) mc) cn) ct) mi)) cc)) cct2))",
+      "SeqScan(it1) SeqScan(cct1) SeqScan(it2) SeqScan(k) BitmapScan(mk) IndexScan(mi_idx) IndexScan(cc) IndexScan(t) SeqScan(kt) IndexScan(mi) SeqScan(cct2) IndexScan(mc) IndexScan(cn) SeqScan(ct) NestLoop(k mk) NestLoop(k mk mi_idx) NestLoop(it2 k mk mi_idx) NestLoop(it2 k mk mi_idx cc) NestLoop(cct1 it2 k mk mi_idx cc) NestLoop(cct1 it2 k mk mi_idx cc t) NestLoop(cct1 it2 k mk mi_idx cc t kt) NestLoop(cct1 it2 k mk mi_idx cc t kt mi) NestLoop(it1 cct1 it2 k mk mi_idx cc t kt mi) NestLoop(it1 cct1 it2 k mk mi_idx cc t kt mi cct2) NestLoop(it1 cct1 it2 k mk mi_idx cc t kt mi cct2 mc) NestLoop(it1 cct1 it2 k mk mi_idx cc t kt mi cct2 mc cn) NestLoop(it1 cct1 it2 k mk mi_idx cc t kt mi cct2 mc cn ct) Leading((((((it1 ((((cct1 ((it2 ((k mk) mi_idx)) cc)) t) kt) mi)) cct2) mc) cn) ct))",
+      "SeqScan(mi) SeqScan(mi_idx) SeqScan(cn) SeqScan(mc) SeqScan(t) SeqScan(mk) SeqScan(k) SeqScan(kt) SeqScan(ct) SeqScan(it2) SeqScan(cc) SeqScan(cct2) SeqScan(cct1) SeqScan(it1) HashJoin(mk k) HashJoin(t mk k) HashJoin(t mk k kt) HashJoin(mc t mk k kt) HashJoin(cn mc t mk k kt) HashJoin(cn mc t mk k kt ct) HashJoin(mi_idx cn mc t mk k kt ct) HashJoin(mi_idx cn mc t mk k kt ct it2) HashJoin(mi_idx cn mc t mk k kt ct it2 cc) HashJoin(mi_idx cn mc t mk k kt ct it2 cc cct2) HashJoin(mi_idx cn mc t mk k kt ct it2 cc cct2 cct1) HashJoin(mi mi_idx cn mc t mk k kt ct it2 cc cct2 cct1) HashJoin(mi mi_idx cn mc t mk k kt ct it2 cc cct2 cct1 it1) Leading(((mi (((((mi_idx ((cn (mc ((t (mk k)) kt))) ct)) it2) cc) cct2) cct1)) it1))",
+      "SeqScan(t) SeqScan(cn) SeqScan(mi_idx) SeqScan(mi) SeqScan(mc) SeqScan(mk) SeqScan(k) SeqScan(it1) SeqScan(it2) SeqScan(ct) SeqScan(cc) SeqScan(cct1) SeqScan(cct2) SeqScan(kt) HashJoin(mk k) HashJoin(mc mk k) HashJoin(mi mc mk k) HashJoin(mi mc mk k it1) HashJoin(mi_idx mi mc mk k it1) HashJoin(mi_idx mi mc mk k it1 it2) HashJoin(mi_idx mi mc mk k it1 it2 ct) HashJoin(cn mi_idx mi mc mk k it1 it2 ct) HashJoin(cn mi_idx mi mc mk k it1 it2 ct cc) HashJoin(cn mi_idx mi mc mk k it1 it2 ct cc cct1) HashJoin(cn mi_idx mi mc mk k it1 it2 ct cc cct1 cct2) HashJoin(t cn mi_idx mi mc mk k it1 it2 ct cc cct1 cct2) HashJoin(t cn mi_idx mi mc mk k it1 it2 ct cc cct1 cct2 kt) Leading(((t ((((cn (((mi_idx ((mi (mc (mk k))) it1)) it2) ct)) cc) cct1) cct2)) kt))"
+    ],
+    "arm_to_plan": {
+      "1": 0,
+      "4": 1,
+      "3": 2,
+      "2": 3,
+      "0": 4
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          869.256,
+          850.828,
+          780.84,
+          807.83,
+          809.847
+        ],
+        "median_ms": 809.847,
+        "min_ms": 780.84,
+        "spread_ms": 88.416,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          649.791,
+          628.069,
+          624.667,
+          644.984,
+          612.596
+        ],
+        "median_ms": 628.069,
+        "min_ms": 612.596,
+        "spread_ms": 37.195,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          661.738,
+          661.031,
+          714.663,
+          665.914,
+          641.371
+        ],
+        "median_ms": 661.738,
+        "min_ms": 641.371,
+        "spread_ms": 73.292,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          1252.922,
+          1229.159,
+          1412.061,
+          1228.563,
+          1204.538
+        ],
+        "median_ms": 1229.159,
+        "min_ms": 1204.538,
+        "spread_ms": 207.523,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          1247.188,
+          1289.043,
+          1285.966,
+          1242.605,
+          1299.529
+        ],
+        "median_ms": 1285.966,
+        "min_ms": 1242.605,
+        "spread_ms": 56.924,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 4,
+    "best_over_second": 0.9491
+  },
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/11988.sql": {
+    "unique_arm_plans": [
+      "IndexScan(mi) IndexScan(mk) IndexScan(cc) IndexScan(t) SeqScan(ml) SeqScan(lt) IndexScan(mc) SeqScan(ct) SeqScan(cn) SeqScan(cct2) SeqScan(cct1) SeqScan(k) HashJoin(ml lt) MergeJoin(t ml lt) MergeJoin(t ml lt mc) HashJoin(t ml lt mc ct) HashJoin(t ml lt mc ct cn) MergeJoin(cc t ml lt mc ct cn) HashJoin(cc t ml lt mc ct cn cct2) HashJoin(cc t ml lt mc ct cn cct2 cct1) MergeJoin(mk cc t ml lt mc ct cn cct2 cct1) HashJoin(mk cc t ml lt mc ct cn cct2 cct1 k) MergeJoin(mi mk cc t ml lt mc ct cn cct2 cct1 k) Leading((mi ((mk (((cc ((((t (ml lt)) mc) ct) cn)) cct2) cct1)) k)))",
+      "SeqScan(cct2) SeqScan(ct) SeqScan(lt) SeqScan(k) BitmapScan(mk) IndexScan(ml) IndexScan(mi) IndexScan(mc) IndexScan(cn) IndexScan(t) IndexScan(cc) SeqScan(cct1) NestLoop(k mk) NestLoop(k mk ml) NestLoop(lt k mk ml) NestLoop(lt k mk ml mi) NestLoop(lt k mk ml mi mc) NestLoop(ct lt k mk ml mi mc) NestLoop(ct lt k mk ml mi mc cn) NestLoop(ct lt k mk ml mi mc cn t) NestLoop(ct lt k mk ml mi mc cn t cc) NestLoop(cct2 ct lt k mk ml mi mc cn t cc) NestLoop(cct2 ct lt k mk ml mi mc cn t cc cct1) Leading(((cct2 ((((ct (((lt ((k mk) ml)) mi) mc)) cn) t) cc)) cct1))",
+      "SeqScan(ct) SeqScan(cct2) SeqScan(lt) SeqScan(k) BitmapScan(mk) BitmapScan(ml) BitmapScan(mi) BitmapScan(t) BitmapScan(cc) SeqScan(cct1) BitmapScan(mc) BitmapScan(cn) NestLoop(k mk) NestLoop(k mk ml) NestLoop(lt k mk ml) NestLoop(lt k mk ml mi) NestLoop(lt k mk ml mi t) NestLoop(lt k mk ml mi t cc) NestLoop(cct2 lt k mk ml mi t cc) NestLoop(cct2 lt k mk ml mi t cc cct1) NestLoop(cct2 lt k mk ml mi t cc cct1 mc) NestLoop(ct cct2 lt k mk ml mi t cc cct1 mc) NestLoop(ct cct2 lt k mk ml mi t cc cct1 mc cn) Leading(((ct (((cct2 ((((lt ((k mk) ml)) mi) t) cc)) cct1) mc)) cn))",
+      "SeqScan(ct) SeqScan(lt) BitmapScan(ml) IndexScan(cc) SeqScan(cct2) SeqScan(cct1) IndexScan(mc) IndexScan(cn) IndexScan(mi) IndexScan(mk) IndexScan(k) IndexScan(t) NestLoop(lt ml) NestLoop(lt ml cc) HashJoin(lt ml cc cct2) HashJoin(lt ml cc cct2 cct1) NestLoop(lt ml cc cct2 cct1 mc) NestLoop(ct lt ml cc cct2 cct1 mc) NestLoop(ct lt ml cc cct2 cct1 mc cn) NestLoop(ct lt ml cc cct2 cct1 mc cn mi) NestLoop(ct lt ml cc cct2 cct1 mc cn mi mk) NestLoop(ct lt ml cc cct2 cct1 mc cn mi mk k) NestLoop(ct lt ml cc cct2 cct1 mc cn mi mk k t) Leading(((((((ct (((((lt ml) cc) cct2) cct1) mc)) cn) mi) mk) k) t))",
+      "SeqScan(t) SeqScan(cn) SeqScan(mc) SeqScan(mi) SeqScan(mk) SeqScan(k) SeqScan(ct) SeqScan(cc) SeqScan(cct2) SeqScan(cct1) SeqScan(ml) SeqScan(lt) HashJoin(mk k) HashJoin(mi mk k) HashJoin(mc mi mk k) HashJoin(mc mi mk k ct) HashJoin(cn mc mi mk k ct) HashJoin(cn mc mi mk k ct cc) HashJoin(cn mc mi mk k ct cc cct2) HashJoin(cn mc mi mk k ct cc cct2 cct1) HashJoin(t cn mc mi mk k ct cc cct2 cct1) HashJoin(t cn mc mi mk k ct cc cct2 cct1 ml) HashJoin(t cn mc mi mk k ct cc cct2 cct1 ml lt) Leading((((t ((((cn ((mc (mi (mk k))) ct)) cc) cct2) cct1)) ml) lt))"
+    ],
+    "arm_to_plan": {
+      "0": 0,
+      "4": 1,
+      "1": 2,
+      "3": 3,
+      "2": 4
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          112.352,
+          116.032,
+          114.383,
+          103.357,
+          105.663
+        ],
+        "median_ms": 112.352,
+        "min_ms": 103.357,
+        "spread_ms": 12.675,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          21.731,
+          21.189,
+          21.483,
+          21.619,
+          21.888
+        ],
+        "median_ms": 21.619,
+        "min_ms": 21.189,
+        "spread_ms": 0.699,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          52.19,
+          39.547,
+          52.907,
+          51.928,
+          51.13
+        ],
+        "median_ms": 51.928,
+        "min_ms": 39.547,
+        "spread_ms": 13.36,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          32.229,
+          32.474,
+          33.73,
+          46.441,
+          32.532
+        ],
+        "median_ms": 32.532,
+        "min_ms": 32.229,
+        "spread_ms": 14.212,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          838.597,
+          833.336,
+          844.204,
+          847.884,
+          847.587
+        ],
+        "median_ms": 844.204,
+        "min_ms": 833.336,
+        "spread_ms": 14.548,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 4,
+    "best_over_second": 0.6645
+  },
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/e12a.sql": {
+    "unique_arm_plans": [
+      "SeqScan(it1) SeqScan(mi) BitmapScan(t) BitmapScan(ci) SeqScan(pi) SeqScan(it2) BitmapScan(n) NestLoop(mi t) NestLoop(mi t ci) HashJoin(pi it2) NestLoop(pi it2 n) HashJoin(mi t ci pi it2 n) NestLoop(it1 mi t ci pi it2 n) Leading((it1 (((mi t) ci) ((pi it2) n))))",
+      "SeqScan(it1) SeqScan(mi) IndexOnlyScan(t) IndexScan(ci) SeqScan(pi) SeqScan(it2) IndexScan(n) NestLoop(mi t) NestLoop(mi t ci) NestLoop(pi it2) MergeJoin(mi t ci pi it2) NestLoop(mi t ci pi it2 n) NestLoop(it1 mi t ci pi it2 n) Leading((it1 ((((mi t) ci) (pi it2)) n)))",
+      "SeqScan(it1) SeqScan(pi) SeqScan(it2) SeqScan(mi) IndexOnlyScan(t) IndexScan(ci) IndexScan(n) HashJoin(pi it2) NestLoop(mi t) NestLoop(mi t ci) HashJoin(pi it2 mi t ci) NestLoop(pi it2 mi t ci n) NestLoop(it1 pi it2 mi t ci n) Leading((it1 (((pi it2) ((mi t) ci)) n)))",
+      "SeqScan(n) SeqScan(pi) SeqScan(it2) SeqScan(ci) BitmapScan(mi) SeqScan(it1) SeqScan(t) HashJoin(pi it2) NestLoop(mi it1) HashJoin(mi it1 t) HashJoin(ci mi it1 t) HashJoin(pi it2 ci mi it1 t) HashJoin(n pi it2 ci mi it1 t) Leading((n ((pi it2) (ci ((mi it1) t)))))",
+      "SeqScan(pi) SeqScan(it2) IndexScan(n) SeqScan(ci) IndexScan(mi) SeqScan(it1) IndexOnlyScan(t) HashJoin(pi it2) NestLoop(mi it1) MergeJoin(mi it1 t) HashJoin(ci mi it1 t) MergeJoin(n ci mi it1 t) HashJoin(pi it2 n ci mi it1 t) Leading(((pi it2) (n (ci ((mi it1) t)))))"
+    ],
+    "arm_to_plan": {
+      "1": 0,
+      "4": 1,
+      "3": 2,
+      "2": 3,
+      "0": 4
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          5094.723,
+          4536.222,
+          4817.807,
+          4683.61,
+          4948.84
+        ],
+        "median_ms": 4817.807,
+        "min_ms": 4536.222,
+        "spread_ms": 558.501,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          6713.011,
+          6719.884,
+          6500.489,
+          6404.635,
+          6452.437
+        ],
+        "median_ms": 6500.489,
+        "min_ms": 6404.635,
+        "spread_ms": 315.249,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          5048.715,
+          4471.028,
+          4529.047,
+          4391.269,
+          4381.555
+        ],
+        "median_ms": 4471.028,
+        "min_ms": 4381.555,
+        "spread_ms": 667.16,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          12942.338,
+          13123.685,
+          12963.427,
+          12386.962,
+          11946.622
+        ],
+        "median_ms": 12942.338,
+        "min_ms": 11946.622,
+        "spread_ms": 1177.063,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          16696.719,
+          16426.845,
+          17198.124,
+          15721.839,
+          16049.805
+        ],
+        "median_ms": 16426.845,
+        "min_ms": 15721.839,
+        "spread_ms": 1476.285,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 3,
+    "best_over_second": 0.928
+  },
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/01094.sql": {
+    "unique_arm_plans": [
+      "SeqScan(k) BitmapScan(mk) BitmapScan(t) BitmapScan(ci) BitmapScan(n) NestLoop(k mk) NestLoop(k mk t) NestLoop(k mk t ci) NestLoop(k mk t ci n) Leading(((((k mk) t) ci) n))",
+      "SeqScan(k) BitmapScan(mk) IndexScan(t) IndexScan(ci) IndexScan(n) NestLoop(k mk) NestLoop(k mk t) NestLoop(k mk t ci) NestLoop(k mk t ci n) Leading(((((k mk) t) ci) n))",
+      "SeqScan(n) SeqScan(ci) SeqScan(t) SeqScan(mk) SeqScan(k) HashJoin(mk k) HashJoin(t mk k) HashJoin(ci t mk k) HashJoin(n ci t mk k) Leading((n (ci (t (mk k)))))"
+    ],
+    "arm_to_plan": {
+      "1": 0,
+      "3": 1,
+      "4": 1,
+      "0": 2,
+      "2": 2
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          7227.139,
+          6192.317,
+          6124.981,
+          5884.928,
+          6140.313
+        ],
+        "median_ms": 6140.313,
+        "min_ms": 5884.928,
+        "spread_ms": 1342.211,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          5372.877,
+          5842.152,
+          5512.872,
+          5416.75,
+          5273.738
+        ],
+        "median_ms": 5416.75,
+        "min_ms": 5273.738,
+        "spread_ms": 568.414,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          2463.066,
+          2319.142,
+          2256.381,
+          2152.098,
+          2236.117
+        ],
+        "median_ms": 2256.381,
+        "min_ms": 2152.098,
+        "spread_ms": 310.968,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 0,
+    "best_over_second": 1.0
+  },
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/16427.sql": {
+    "unique_arm_plans": [
+      "SeqScan(mc) SeqScan(ct) BitmapScan(t) BitmapScan(mi) SeqScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) NestLoop(mc ct t mi it) Leading(((((mc ct) t) mi) it))",
+      "SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) IndexOnlyScan(it) HashJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) NestLoop(mc ct t mi it) Leading(((((mc ct) t) mi) it))",
+      "SeqScan(mc) SeqScan(ct) IndexScan(t) IndexScan(mi) IndexOnlyScan(it) MergeJoin(mc ct) NestLoop(mc ct t) NestLoop(mc ct t mi) NestLoop(mc ct t mi it) Leading(((((mc ct) t) mi) it))",
+      "SeqScan(t) SeqScan(mi) SeqScan(mc) SeqScan(ct) SeqScan(it) HashJoin(mc ct) HashJoin(mi mc ct) HashJoin(t mi mc ct) HashJoin(t mi mc ct it) Leading(((t (mi (mc ct))) it))"
+    ],
+    "arm_to_plan": {
+      "1": 0,
+      "3": 1,
+      "4": 2,
+      "0": 3,
+      "2": 3
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          67.289,
+          66.883,
+          67.027,
+          68.718,
+          66.87
+        ],
+        "median_ms": 67.027,
+        "min_ms": 66.87,
+        "spread_ms": 1.848,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          67.471,
+          70.174,
+          66.438,
+          67.68,
+          64.555
+        ],
+        "median_ms": 67.471,
+        "min_ms": 64.555,
+        "spread_ms": 5.619,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          66.723,
+          68.632,
+          67.792,
+          67.849,
+          67.131
+        ],
+        "median_ms": 67.792,
+        "min_ms": 66.723,
+        "spread_ms": 1.909,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          77.377,
+          75.684,
+          77.463,
+          76.203,
+          74.235
+        ],
+        "median_ms": 76.203,
+        "min_ms": 74.235,
+        "spread_ms": 3.228,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 1,
+    "best_over_second": 0.9934
+  },
+  "/home/mini/bao/mihini/BaoForPostgreSQL/job_unique/14439.sql": {
+    "unique_arm_plans": [
+      "SeqScan(cn) SeqScan(mc) SeqScan(chn) SeqScan(an) SeqScan(n) SeqScan(mi) SeqScan(it) SeqScan(ci) SeqScan(t) SeqScan(rt) HashJoin(an n) HashJoin(mi it) HashJoin(ci t) HashJoin(ci t rt) HashJoin(mi it ci t rt) HashJoin(an n mi it ci t rt) HashJoin(chn an n mi it ci t rt) HashJoin(mc chn an n mi it ci t rt) HashJoin(cn mc chn an n mi it ci t rt) Leading((cn (mc (chn ((an n) ((mi it) ((ci t) rt)))))))",
+      "SeqScan(t) BitmapScan(mc) BitmapScan(cn) BitmapScan(ci) BitmapScan(mi) BitmapScan(an) BitmapScan(chn) SeqScan(it) BitmapScan(n) SeqScan(rt) NestLoop(t mc) NestLoop(t mc cn) NestLoop(t mc cn ci) NestLoop(t mc cn ci mi) NestLoop(t mc cn ci mi an) NestLoop(t mc cn ci mi an chn) NestLoop(t mc cn ci mi an chn it) NestLoop(t mc cn ci mi an chn it n) NestLoop(t mc cn ci mi an chn it n rt) Leading((((((((((t mc) cn) ci) mi) an) chn) it) n) rt))",
+      "SeqScan(t) IndexScan(mc) IndexScan(cn) IndexScan(ci) IndexScan(mi) IndexOnlyScan(an) IndexOnlyScan(chn) IndexScan(it) IndexScan(n) IndexScan(rt) NestLoop(t mc) NestLoop(t mc cn) NestLoop(t mc cn ci) NestLoop(t mc cn ci mi) NestLoop(t mc cn ci mi an) NestLoop(t mc cn ci mi an chn) NestLoop(t mc cn ci mi an chn it) NestLoop(t mc cn ci mi an chn it n) NestLoop(t mc cn ci mi an chn it n rt) Leading((((((((((t mc) cn) ci) mi) an) chn) it) n) rt))"
+    ],
+    "arm_to_plan": {
+      "0": 0,
+      "2": 0,
+      "1": 1,
+      "3": 2,
+      "4": 2
+    },
+    "timings": [
+      {
+        "samples_ms": [
+          1815.582,
+          1825.682,
+          1833.277,
+          1832.827,
+          1832.841
+        ],
+        "median_ms": 1832.827,
+        "min_ms": 1815.582,
+        "spread_ms": 17.695,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          72.799,
+          72.413,
+          71.633,
+          73.691,
+          73.406
+        ],
+        "median_ms": 72.799,
+        "min_ms": 71.633,
+        "spread_ms": 2.058,
+        "timed_out": false
+      },
+      {
+        "samples_ms": [
+          72.634,
+          71.287,
+          70.31,
+          72.859,
+          76.45
+        ],
+        "median_ms": 72.634,
+        "min_ms": 70.31,
+        "spread_ms": 6.14,
+        "timed_out": false
+      }
+    ],
+    "best_arm": 3,
+    "best_over_second": 1.0
+  }
+}

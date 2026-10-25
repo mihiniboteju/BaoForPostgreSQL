@@ -1,1 +1,10 @@
 .venv
+__pycache__/
+*.pyc
+
+# Local secrets -- never commit
+.env
+
+# Tooling downloads
+code-insiders
+vscode_cli.tar.gz
